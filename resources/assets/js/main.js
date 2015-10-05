@@ -1,3 +1,3 @@
-var Counter = require('./Counter');
+import Counter from './Counter';
 
 new Counter();
