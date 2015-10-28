@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DatabaseSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,10 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+      DB::table('roles')->insert([
+        'name' => 'admin'
+      ]);
 
-        $this->call(RoleTableSeeder::class);
-
-        Model::reguard();
+      DB::table('roles')->insert([
+        'name' => 'user'
+      ]);
     }
 }

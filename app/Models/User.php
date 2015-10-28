@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'sex', 'birthdate'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -36,4 +36,45 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * @return mixed
+     */
+    public function roles() 
+    {
+        return $this->belongsToMany('App\Models\Role')->withTimestamps();
+    }
+
+    /**
+     * Does a user have a particular role=
+     * @param  $name 
+     * @return boolean       
+     */
+    public function hasRole($name) 
+    {
+        foreach ($this->roles as $role) {
+            if ($role->name == $name) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Assign a role to the user
+     * @param  $role
+     * @return mixed 
+     */
+    public function assignRole($role) 
+    {
+        return $this->roles()->attach($role);
+    }
+
+    /**
+     * Remove user from role
+     * @param  $role 
+     * @return mixed
+     */
+    public function removeRole($role) 
+    {
+        return $this->roles()->detach($role);
+    }
 }
