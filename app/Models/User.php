@@ -37,6 +37,21 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at', 'birthdate'];
+
+    /**
+     * Converts birthdate into a Carbon instance
+     * @param $value
+     */
+    public function setBirthdateAttribute($value) {
+        $this->attributes['birthdate'] = new Carbon($value);
+    }
+
     /**
      * @return mixed
      */
