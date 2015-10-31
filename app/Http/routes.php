@@ -19,6 +19,10 @@ Route::get('/test', function() {
   return 'Secret';
 })->middleware('role:admin');
 
+Route::get('/dashboard', function() {
+  return 'Dashboard';
+});
+
 // Authentication routes
 Route::get('/login', 'Auth\AuthController@getLogin');
 Route::post('/login', 'Auth\AuthController@postLogin');
