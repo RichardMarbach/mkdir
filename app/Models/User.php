@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Role;
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -28,7 +30,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'sex', 'birthdate'];
+    protected $fillable = ['email', 'password', 'sex', 'birthdate'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -49,7 +51,7 @@ class User extends Model implements AuthenticatableContract,
      * @param $value
      */
     public function setBirthdateAttribute($value) {
-        $this->attributes['birthdate'] = new Carbon($value);
+        $this->attributes['birthdate'] = new \Carbon\Carbon($value);
     }
 
     /**
@@ -57,7 +59,7 @@ class User extends Model implements AuthenticatableContract,
      */
     public function roles() 
     {
-        return $this->belongsToMany('App\Models\Role')->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     /**

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/test', function() {
   return 'Secret';
-});
+})->middleware('role:admin');
 
 // Authentication routes
 Route::get('/login', 'Auth\AuthController@getLogin');

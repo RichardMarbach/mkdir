@@ -6,6 +6,8 @@
 
 @section('content')
 
+  @include('common.errors')  
+
   <form method="POST" action="/login">
     {!! csrf_field() !!}
 

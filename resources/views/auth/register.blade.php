@@ -1,28 +1,40 @@
+@extends('layouts.master')
 
-<form method="POST" action="/auth/register">
-  {!! csrf_field() !!}
+@section('title')
+  Register
+@endsection
 
+@section('content')
+@include('common.errors')
+
+{!! Form::open(['url' => '/register', 'method' => 'post']) !!}
   <div>
-    Name
-    <input type="text" name="name" value="{{ old('name') }}">
+    {!! Form::label('email', 'Email') !!}
+    {!! Form::email('email') !!}
   </div>
 
   <div>
-    Email
-    <input type="email" name="email" value="{{ old('email') }}">
+    {!! Form::label('password', 'Password') !!}
+    {!! Form::password('password') !!}
   </div>
 
   <div>
-    Password
-    <input type="password" name="password">
+    {!! Form::label('password_confirmation', 'Confirm Password') !!}
+    {!! Form::password('password_confirmation') !!}
   </div>
 
   <div>
-    Confirm Password
-    <input type="password" name="password_confirmation">
+    {!! Form::label('sex', 'Gender') !!}
+    {!! Form::select('sex', [0 => 'Male', 1 => 'Female']) !!}
   </div>
 
   <div>
-    <button type="submit">Register</button>
+    {!! Form::label('birthdate', 'Birthdate') !!}
+    {!! Form::date('birthdate', \Carbon\Carbon::now()); !!}
   </div>
-</form>
+
+  <div>
+    {!! Form::submit('Register') !!}
+  </div>
+{!! Form::close() !!}
+@endsection

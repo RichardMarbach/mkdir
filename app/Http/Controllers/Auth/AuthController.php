@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Events\UserRegistered;
+
+use \Carbon\Carbon;
+
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -27,6 +31,8 @@ class AuthController extends Controller
 
     protected $redirectPath = '/dashboard'; 
 
+    private $role;
+
     /**
      * Create a new authentication controller instance.
      *
@@ -46,11 +52,10 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'sex' => 'required|boolean',
-            'birthdate' => 'required|date'
+            'birthdate' => 'required|date|before:' . \Carbon\Carbon::now()
         ]);
     }
 
@@ -63,12 +68,15 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         // We'll need to link the customer and user in this method
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'sex' => $data['sex'],
             'birthdate' => $data['birthdate'],
         ]);
+
+        event(new UserRegistered($user));
+
+        return $user;
     }
 }
