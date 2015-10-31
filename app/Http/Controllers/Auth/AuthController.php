@@ -29,7 +29,7 @@ class AuthController extends Controller
 
     protected $loginPath = '/login';
 
-    protected $redirectPath = '/dashboard'; 
+    protected $redirectPath = '/dashboard';
 
     private $role;
 
@@ -51,12 +51,16 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'before' => 'You were born in the future?'
+        ];
+
         return Validator::make($data, [
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'sex' => 'required|boolean',
             'birthdate' => 'required|date|before:' . \Carbon\Carbon::now()
-        ]);
+        ], $messages);
     }
 
     /**
