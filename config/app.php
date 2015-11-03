@@ -144,11 +144,17 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ImageStorageServiceProvider::class,
 
         /*
          * Collectives
          */
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * Intervention
+         */
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -200,7 +206,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'HTML'      => Collective\Html\HtmlFacade::class,
-
+        'Image'     => Intervention\Image\Facades\Image::class,
     ],
 
 ];
