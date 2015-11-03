@@ -20,9 +20,9 @@ class ImageStorage implements StorageContract
   public function store(File $file) 
   {
     $image = Image::make($file);
-    $image->resize($dimensions[0], $dimensions[1]);
+    $image->resize($this->dimensions[0], $this->dimensions[1]);
 
-    $fileName = md5($file->name . \Carbon\Carbon::now());
+    $fileName = uniqid();
     $filePath = $this->getFilePath($fileName);
 
     $image->save($filePath);
