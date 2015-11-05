@@ -13,11 +13,13 @@ class CreateDvdLanguagesTable extends Migration
     public function up()
     {
         Schema::create('dvd_languages', function (Blueprint $table) {
-            $table->integer('dvd_id')->unsigned();
-            $table->integer('language_id')->unsigned();
+            $table->increments('id');
+            $table->integer('dvd_id')->unsigned()->index();
+            $table->integer('language_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->primary(['dvd_id', 'language_id']);
+            $table->foreign('dvd_id')->references('id')->on('dvds')->onDelete('cascade');
+            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
         });
     }
 

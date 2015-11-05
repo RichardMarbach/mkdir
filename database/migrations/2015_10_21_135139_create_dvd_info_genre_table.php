@@ -13,11 +13,13 @@ class CreateDvdInfoGenreTable extends Migration
     public function up()
     {
         Schema::create('dvd_info_genre', function (Blueprint $table) {
-            $table->integer('dvd_info_id')->unsigned();
-            $table->integer('genre_id')->unsigned();
+            $table->increments('id');
+            $table->integer('dvd_info_id')->unsigned()->index();
+            $table->integer('genre_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->primary(['dvd_info_id', 'genre_id']);
+            $table->foreign('dvd_info_id')->references('id')->on('dvd_info')->onDelete('cascade');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
         });
     }
 
