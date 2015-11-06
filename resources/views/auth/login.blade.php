@@ -8,9 +8,7 @@
   <div class="col-sm-8 col-sm-offset-3 top-buffer">
     <div class="col-sm-offset-2">
       <h2>Login</h2>
-    </div>
-
-    @include('common.errors')  
+    </div>   
 
     {!! Form::open(['url' => 'login', 'method' => 'post', 'class' => 'form-horizontal']) !!}
 
@@ -45,5 +43,9 @@
       </div>
 
     {!! Form::close() !!}
+
+    <div class="col-sm-offset-2 col-sm-4">
+      @include('common.errors')  
+    </div>
   </div>
 @endsection
