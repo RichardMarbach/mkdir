@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \Carbon\Carbon;
 
 class DVD extends Model
 {
@@ -10,8 +11,27 @@ class DVD extends Model
 
     protected $fillable = ['discount', 'age_restriction', 'cover_image', 'price_id', 'dvd_info_id'];
 
-    public function stock() {
+    /**
+     * Returns the total stock count for a particular dvd
+     * @return mixed
+     */
+    public function totalStock() {
         return $this->where('dvd_info_id', $this->dvd_info_id)->count();
+    }
+
+    /**
+     * Returns the number of currently available dvds
+     * @return mixed
+     */
+    public function stock() {
+        return $this->leftJoin('rentals', 'dvds.id', '=', 'rentals.dvd_id')
+            ->where('dvd_info_id', $this->dvd_info_id)
+            ->where('start_date', '>', Carbon::now())
+            ->orWhereNull('start_date')
+            ->where('due_date', '<', Carbon::now())
+            ->orWhereNull('due_date')
+            ->orWhere('return_date', '<=', Carbon::now())
+            ->count();
     }
 
     /**

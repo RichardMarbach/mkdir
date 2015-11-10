@@ -7,7 +7,7 @@ use \Carbon\Carbon;
 
 class Rental extends Model
 {
-    protected $fillable = ['start_date', 'due_date', 'return_date'];
+    protected $fillable = ['start_date', 'due_date', 'return_date', 'customer_id', 'dvd_id'];
 
     protected $dates = ['created_at', 'updated_at', 'start_date', 'due_date', 'return_date', 'deleted_at'];
 
