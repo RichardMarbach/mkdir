@@ -57,6 +57,13 @@ class User extends Model implements AuthenticatableContract,
     /**
      * @return mixed
      */
+    public function customer() {
+        return $this->belongsTo('App\Models\Customer');
+    }
+
+    /**
+     * @return mixed
+     */
     public function roles() 
     {
         return $this->belongsToMany(Role::class)->withTimestamps();

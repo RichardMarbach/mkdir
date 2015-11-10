@@ -8,18 +8,26 @@ use Image;
 
 class ImageStorage implements StorageContract 
 {
-  public $destinationPath = '/images/';
-
-  public $dimensions = [400, 150];
+  /**
+   * Path to save the image to
+   * @var string
+   */
+  private $destinationPath = '/images/';
 
   /**
-   * Stores a file in the designated public folder
-   * @param  File   $file 
-   * @return string       The hashed file name
+   * Image dimensions (width x height) in pixels
+   * @var array
    */
-  public function store(File $file) 
+  private $dimensions = [150, 300];
+
+  /**
+   * Stores a image in the designated folder
+   * @param  File   $image 
+   * @return string       The stored filenames
+   */
+  public function store(File $image) 
   {
-    $image = Image::make($file);
+    $image = Image::make($image);
     $image->resize($this->dimensions[0], $this->dimensions[1]);
 
     $fileName = uniqid();
@@ -44,12 +52,12 @@ class ImageStorage implements StorageContract
   }
 
   /**
-   * Retrieves the filepath for a file
+   * Retrieves the filepath for an image
    * @param  string $filename
    * @return string
    */
   private function getFilePath($filename = '')
   {
-    return public_path() . $this->destinationPath . $filename;
+    return $this->destinationPath . $filename;
   }
 }

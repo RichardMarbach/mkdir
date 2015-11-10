@@ -6,10 +6,10 @@ Interface ImageStorageContract
 {
   /**
    * Store the image in the filesystem
-   * @param  File   $file
+   * @param  File   $image
    * @return string       The stored image name
    */
-  public function store(File $image);
+  public function store(\Illuminate\Support\Facades\File $image);
 
   /**
    * Delete the image from the filesystem
