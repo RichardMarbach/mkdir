@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Events\UserRegistered;
+use App\Models\Customer;
 
 use \Carbon\Carbon;
 
@@ -56,6 +57,7 @@ class AuthController extends Controller
         ];
 
         return Validator::make($data, [
+            'name'  => 'required|min:2',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'sex' => 'required|boolean',
@@ -71,12 +73,19 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $customer = Customer::where('name', $data['name'])->first();
+
+        if (!$customer) {
+            $customer = Customer::create($data);
+        }
+
         // We'll need to link the customer and user in this method
         $user = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'sex' => $data['sex'],
             'birthdate' => $data['birthdate'],
+            'customer_id' => $customer->id
         ]);
 
         event(new UserRegistered($user));
