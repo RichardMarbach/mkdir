@@ -21,20 +21,23 @@ class DVDInfo extends Model
    * @return mixed
    */
   public function producers() {
-    return $this->belongsToMany('App\Models\Producer', 'producer_dvd_info', 'dvd_info_id')->withTimestamps();
+    return $this->belongsToMany('App\Models\Producer', 'producer_dvd_info', 'dvd_info_id')
+        ->withTimestamps();
   }
 
   /**
    * @return mixed
    */
   public function genres() {
-    return $this->belongsToMany('App\Models\Genre', 'dvd_info_genre', 'dvd_info_id')->withTimestamps();
+    return $this->belongsToMany('App\Models\Genre', 'dvd_info_genre', 'dvd_info_id')
+        ->withTimestamps();
   }
 
   /**
    * @return mixed
    */
   public function actors() {
-    return $this->belongsToMany('App\Models\Actor', 'actor_roles', 'dvd_info_id')->withPivot('character_name')->withTimestamps();
+    return $this->belongsToMany('App\Models\Actor', 'actor_roles', 'dvd_info_id', 'actor_id')
+        ->withPivot('character_name')->withTimestamps();
   }
 }

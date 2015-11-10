@@ -12,7 +12,7 @@ class Actor extends Model
      * @return mixed
      */
     public function dvds() {
-      return $this->belongsToMany('App\Models\DVDInfo', 'actor_roles'
-        , 'actor_id', 'dvd_info_id')->pivot('character_name')->withTimestamps();
+      return $this->belongsToMany('App\Models\DVDInfo', 'actor_roles', 'actor_id', 'dvd_info_id')
+          ->pivot('character_name')->withTimestamps();
     }
 }

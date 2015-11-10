@@ -12,8 +12,8 @@ class Producer extends Model
      * @return mixed
      */
     public function dvds() {
-      return $this->belongsToMany('App\Models\DVDInfo', 'producer_dvd_info'
-          , 'producer_id', 'dvd_info_id')->withTimestamps();
+      return $this->belongsToMany('App\Models\DVDInfo', 'producer_dvd_info', 'producer_id', 'dvd_info_id')
+          ->withTimestamps();
     }
 
 }
