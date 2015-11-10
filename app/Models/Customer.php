@@ -14,4 +14,11 @@ class Customer extends Model
     public function user() {
       return $this->hasOne('App\Models\User');
     }
+
+    /**
+     * @return  mixed
+     */
+    public function rentals() {
+      return $this->hasMany('App\Models\Rental');
+    }
 }
