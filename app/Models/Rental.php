@@ -32,8 +32,8 @@ class Rental extends Model
      * @return boolean
      */
     public function isRented() {
-      return $this->start_date < Carbon::now() 
-        && $this->due_date < Carbon::now() 
+      return $this->start_date <= Carbon::now() 
+        && $this->due_date >= Carbon::now() 
         && !$this->isReturned();
     }
 
