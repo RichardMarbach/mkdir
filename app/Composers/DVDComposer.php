@@ -16,6 +16,6 @@ class DVDComposer
 
     public function compose(View $view)
     {
-        $view->with('dvds', $this->dvds->eagerLoadAllDvds());
+        $view->with('dvds', $this->dvds->retrieveAllDvds());
     }
 }

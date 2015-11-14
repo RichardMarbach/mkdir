@@ -21,17 +21,35 @@ class DVDRepository
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function eagerLoadAllDvds() {
-      return $this->dvd->with('price', 'rentals.customers.users', 'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres')
-          ->get();
+      return $this->dvd->with(
+        'price', 'rentals.customers.users', 
+        'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres', 
+        'languages', 'subtitles'
+      )->get();
     }
 
     /**
      * Return all refenced information for a specific dvd
      * @param  Dvd    $dvd 
-     * @return \Illumate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function eagerLoadAll(Dvd $dvd) {
-      return $dvd->with('price', 'rentals.customers.users', 'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres')
-          ->get();
+      return $dvd->with(
+        'price', 'rentals.customers.users', 
+        'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres',
+        'languages', 'subtitles'
+      )->get();
+    }
+
+    /**
+     * Retrieves all dvds collected by dvd info
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function retrieveAllDvds() {
+      return $this->dvdInfo->with(
+        'producers', 'genres', 'actors', 
+        'dvds.price', 'dvds.languages', 'dvds.subtitles',
+        'dvds.rentals.customers.users'
+      )->get();
     }
 }

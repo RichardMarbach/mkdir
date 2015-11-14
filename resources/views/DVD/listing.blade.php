@@ -6,6 +6,6 @@
 
 @section('content')
   <div class="container">
-    {{ $dvds }}
+    @each('DVD.partials.dvd_item', $dvds, 'dvd')
   </div>
 @endsection
