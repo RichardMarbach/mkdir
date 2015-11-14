@@ -35,3 +35,5 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 //DVD creation routes
 Route::get('/createDVD', 'Admin\DVDController@createDVD');
 Route::get('/dvds', 'DVDController@index');
+
+Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => function() {}]);

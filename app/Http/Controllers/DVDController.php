@@ -18,7 +18,7 @@ class DVDController extends Controller
      */
     public function index(DVDRepository $dvds)
     {
-        return view('DVD.listing');
+        return view('DVD.listing')->with('dvds', $dvds->paginateDvds());
     }
 
     /**

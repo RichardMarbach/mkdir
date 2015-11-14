@@ -6,6 +6,10 @@
 
 @section('content')
   <div class="container">
-    @each('DVD.partials.dvd_item', $dvds, 'dvd')
+    <h1>Our DVDs</h1>
+
+    @each('DVD.partials.dvd_item', $dvds, 'dvd', 'common.empty')
+
+    {!! $dvds->render() !!}
   </div>
 @endsection

@@ -46,10 +46,23 @@ class DVDRepository
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function retrieveAllDvds() {
-      return $this->dvdInfo->with(
+      return $this->eagerLoadDvdInfo()->get();
+    }
+
+    /**
+     * Retrieves all dvds in pages
+     * @param  integer $pageCount
+     * @return mixed             
+     */
+    public function paginateDvds($pageCount = 20) {
+        return $this->eagerLoadDvdInfo()->paginate($pageCount);
+    }
+
+    private function eagerLoadDvdInfo() {
+        return $this->dvdInfo->with(
         'producers', 'genres', 'actors', 
         'dvds.price', 'dvds.languages', 'dvds.subtitles',
         'dvds.rentals.customers.users'
-      )->get();
+      );
     }
 }

@@ -13,9 +13,9 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(
-            'DVD.listing', \App\Composers\DVDComposer::class
-        );
+        // view()->composer(
+        //     'DVD.listing', \App\Composers\DVDComposer::class
+        // );
     }
 
     /**
