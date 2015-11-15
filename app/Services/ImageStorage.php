@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Services\Contracts\ImageStorageContract as StorageContract;
+use Symfony\Component\HttpFoundation\File\UploadedFile as UploadedFile;
 use File;
 use Image;
 
@@ -18,14 +19,14 @@ class ImageStorage implements StorageContract
    * Image dimensions (width x height) in pixels
    * @var array
    */
-  private $dimensions = [150, 300];
+  private $dimensions = array(150, 300);
 
   /**
    * Stores a image in the designated folder
-   * @param  File   $image 
+   * @param  UploadedFile   $image 
    * @return string       The stored filenames
    */
-  public function store(File $image) 
+  public function store(UploadedFile $image) 
   {
     $image = Image::make($image);
     $image->resize($this->dimensions[0], $this->dimensions[1]);
@@ -56,8 +57,8 @@ class ImageStorage implements StorageContract
    * @param  string $filename
    * @return string
    */
-  private function getFilePath($filename = '')
+  private function getFilePath($fileName)
   {
-    return $this->destinationPath . $filename;
+    return storage_path() . $this->destinationPath . $fileName;
   }
 }

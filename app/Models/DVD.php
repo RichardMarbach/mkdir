@@ -12,6 +12,21 @@ class DVD extends Model
     protected $fillable = ['discount', 'age_restriction', 'cover_image', 'price_id', 'dvd_info_id'];
 
     /**
+     * Is the dvd rented?
+     * @return boolean
+     */
+    public function isRented() 
+    {
+        return $this->rentals()
+            ->where('start_date', '>', Carbon::now())
+            ->orWhereNull('start_date')
+            ->where('due_date', '<', Carbon::now())
+            ->orWhereNull('due_date')
+            ->orWhere('return_date', '<=', Carbon::now())
+            ->count() != 0;
+    }
+
+    /**
      * Returns the total stock count for a particular dvd
      * @return mixed
      */
