@@ -20,7 +20,9 @@ Route::get('/test', function() {
 })->middleware('role:admin');
 
 // Admin routes
-Route::get('admin/dashboard', ['as' => 'admin.dashbaord', 'uses' => 'DashboardController@getAdminDashboard']);
+Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function() {
+    Route::get('admin/dashboard', ['as' => 'dashbaord', 'uses' => 'DashboardController@getAdminDashboard']);
+});
 
 // User routes
 Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@getUserDashboard']);
