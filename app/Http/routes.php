@@ -34,4 +34,5 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 
 //DVD creation routes
 Route::get('/createDVD', 'Admin\DVDController@createDVD');
+Route::post('/createDVD', 'Admin\DVDController@store');
 Route::get('/dvd', 'Admin\DVDController@index');

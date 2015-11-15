@@ -50,6 +50,12 @@
     {!! Form::button('Add producer')!!}
 </div>
 
+<div>
+    {!! Form::label('age_restriction', 'Age restriction') !!}
+    {!! Form::number('age_restriction', null) !!}
+    {!! Form::label('age_restriction', 'years') !!}
+</div>
+
 <h3> Cast </h3>
 
 <div>
@@ -79,22 +85,24 @@
     {!! Form::label('Price') !!}
     {!! Form::number('price_whole', null) !!}
     {!! Form::label('price_whole', ' $') !!}
-    {!! Form::number('price_whole', null) !!}
+    {!! Form::number('price_cents', null) !!}
     {!! Form::label('price_cents', 'c') !!}
 </div>
 
 <div>
     {!! Form::label('Late Fee') !!}
-    {!! Form::number('price_whole', null) !!}
-    {!! Form::label('price_whole', '$') !!}
-    {!! Form::number('price_cents', null) !!}
-    {!! Form::label('price_cents', 'c') !!}
+    {!! Form::number('late_fee', null) !!}
+    {!! Form::label('late_fee', '$') !!}
 </div>
 
 <div>
     {!! Form::label('discount', 'Discount') !!}
     {!! Form::number('discount', null) !!}
     {!! Form::label('discount', '%') !!}
+</div>
+<div>
+    <br>
+    {!! Form::submit('Add') !!}
 </div>
 {!! Form::close() !!}
 @endsection

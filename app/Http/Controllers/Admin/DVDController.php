@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DVD;
+use App\Models\DVDInfo;
+use Request;
 
 class DVDController extends Controller
 {
@@ -14,4 +17,15 @@ class DVDController extends Controller
     {
         return view('DVD/createDVD');
     }
+
+
+
+    public function store()
+    {
+
+        $input = Request::all();
+        DVD::create($input);
+
+    }
+
 }
