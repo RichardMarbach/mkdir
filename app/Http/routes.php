@@ -19,9 +19,11 @@ Route::get('/test', function() {
   return 'Secret';
 })->middleware('role:admin');
 
-Route::get('/dashboard', function() {
-  return 'Dashboard';
-});
+// Admin routes
+Route::get('admin/dashboard', ['as' => 'admin.dashbaord', 'uses' => 'DashboardController@getAdminDashboard']);
+
+// User routes
+Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@getUserDashboard']);
 
 // Authentication routes
 Route::get('/login', 'Auth\AuthController@getLogin');
