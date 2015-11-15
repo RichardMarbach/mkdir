@@ -41,6 +41,7 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 // DVD creation routes
 Route::get('/createDVD', 'Admin\DVDController@createDVD');
 
+
 // DVD listing route
 Route::get('/dvds', 'DVDController@index');
 
@@ -61,3 +62,4 @@ Route::group(['prefix' => 'api'], function() {
         Route::delete('{id}', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
     });
 });
+
