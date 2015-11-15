@@ -4,8 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "f2dad8aaad9a7d4a5ca5603a041a0963",
     "content-hash": "3584d7ca7296a5668d16594a761e89bb",
+=======
+    "hash": "3c4c2519a269e8b4b131c80288556ae3",
+>>>>>>> 946faa70261f25af91caa011f9c75e5cc9ab080d
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -152,16 +156,16 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "0bcb2e79d8571787f18b7eb036ed3d004908e604"
+                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/0bcb2e79d8571787f18b7eb036ed3d004908e604",
-                "reference": "0bcb2e79d8571787f18b7eb036ed3d004908e604",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/90b2128806bfde671b6952ab8bea493942c1fdae",
+                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +177,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -215,7 +219,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2014-12-20 21:24:13"
+            "time": "2015-11-06 14:35:42"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -613,16 +617,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.1.6",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e"
+                "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
-                "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
+                "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
                 "shasum": ""
             },
             "require": {
@@ -659,7 +663,7 @@
                     "email": "adam@laravelcollective.com"
                 }
             ],
-            "time": "2015-09-03 17:16:48"
+            "time": "2015-11-06 18:14:38"
         },
         {
             "name": "league/flysystem",
@@ -1006,20 +1010,23 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.0.10",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "2fa50aa2f17066fa74ba00d943e8cee1a98284af"
+                "reference": "19f765b66c6fbb56ee3b11bc16d52e38eebdc295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/2fa50aa2f17066fa74ba00d943e8cee1a98284af",
-                "reference": "2fa50aa2f17066fa74ba00d943e8cee1a98284af",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/19f765b66c6fbb56ee3b11bc16d52e38eebdc295",
+                "reference": "19f765b66c6fbb56ee3b11bc16d52e38eebdc295",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*|5.*"
             },
             "suggest": {
                 "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
@@ -1047,7 +1054,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2015-10-23 13:21:37"
+            "time": "2015-11-10 00:45:41"
         },
         {
             "name": "psr/http-message",
@@ -2205,16 +2212,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "d8093b631a31628342d0703764935f8bac2c56b1"
+                "reference": "e3abefcd7f106677fd352cd7c187d6c969aa9ddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/d8093b631a31628342d0703764935f8bac2c56b1",
-                "reference": "d8093b631a31628342d0703764935f8bac2c56b1",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/e3abefcd7f106677fd352cd7c187d6c969aa9ddc",
+                "reference": "e3abefcd7f106677fd352cd7c187d6c969aa9ddc",
                 "shasum": ""
             },
             "require": {
@@ -2243,7 +2250,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2015-10-05 15:07:09"
+            "time": "2015-11-07 22:20:37"
         },
         {
             "name": "phpdocumentor/reflection-docblock",

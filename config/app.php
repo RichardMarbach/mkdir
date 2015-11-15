@@ -145,6 +145,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ImageStorageServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
         /*
          * Collectives

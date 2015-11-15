@@ -18,7 +18,7 @@ class CreateRentalsTable extends Migration
             $table->integer('dvd_id')->unsigned();
             $table->date('start_date');
             $table->date('due_date');
-            $table->date('return_date');
+            $table->date('return_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

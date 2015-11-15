@@ -30,7 +30,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'sex', 'birthdate'];
+    protected $fillable = ['email', 'password', 'sex', 'birthdate', 'customer_id'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -52,6 +52,13 @@ class User extends Model implements AuthenticatableContract,
      */
     public function setBirthdateAttribute($value) {
         $this->attributes['birthdate'] = new \Carbon\Carbon($value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function customer() {
+        return $this->belongsTo('App\Models\Customer');
     }
 
     /**
