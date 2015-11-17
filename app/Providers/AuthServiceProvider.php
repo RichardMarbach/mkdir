@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::registerPolicies($gate);
 
-        //
+        $gate->define('update-user', function ($user, $recordId) {
+            return $user->id == $recordId || $user->isAdmin();
+        });
     }
 }

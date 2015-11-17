@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Customer;
 use App\Models\User;
+use App\Http\Requests\HandleUserRequest;
 
 class UserController extends Controller
 {
@@ -80,14 +81,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $userId)
+    public function update(HandleUserRequest $request, $userId)
     {
         $user = $this->user->findOrFail($userId);
 
         $user->update($request->input());
         $user->customer()->update($request->input());
 
-        return back()->withInput();
+        return back()->with('success', 'Saved!');
     }
 
     /**

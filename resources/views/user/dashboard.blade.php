@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  {{ $user->customer->name }} Dashbaord
+  {{ Auth::user()->customer->name }} Dashbaord
 @endsection
 
 @section('content')

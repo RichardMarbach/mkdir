@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
 
 class DashboardController extends Controller
 {
@@ -19,7 +18,7 @@ class DashboardController extends Controller
     }
 
     public function getUserDashboard() {
-      return view('user.dashboard')->with('user', Auth::user()->with('customer')->first());
+      return view('user.dashboard');
     }
 
 }

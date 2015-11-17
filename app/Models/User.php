@@ -101,4 +101,13 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->roles()->detach($role);
     }
+
+    /**
+     * Is the user an administrator?
+     * @return boolean
+     */
+    public function isAdmin() 
+    {
+        return $this->hasRole('admin');
+    }
 }

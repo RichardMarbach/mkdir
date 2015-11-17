@@ -51,7 +51,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         $messages = [
-            'before' => 'You were born in the future?'
+            'birthdate.before' => 'You were born in the future?'
         ];
 
         return Validator::make($data, [
