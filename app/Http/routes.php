@@ -21,11 +21,13 @@ Route::get('/test', function() {
 
 // Admin routes
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function() {
-    Route::get('admin/dashboard', ['as' => 'dashbaord', 'uses' => 'DashboardController@getAdminDashboard']);
+    Route::get('dashboard', ['as' => 'admin.dashbaord', 'uses' => 'DashboardController@getAdminDashboard']);
 });
 
 // User routes
 Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@getUserDashboard']);
+Route::put('/users', ['as' => 'user.update', 'uses' => 'UserController@update']);
+
 
 // Authentication routes
 Route::get('/login', 'Auth\AuthController@getLogin');

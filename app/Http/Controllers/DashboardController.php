@@ -15,11 +15,11 @@ class DashboardController extends Controller
     }
 
     public function getAdminDashboard() {
-        return view('admin.dashboard')->with('user', Auth::user());
+        return view('admin.dashboard')->with('user', Auth::user()->with('customer')->first());
     }
 
     public function getUserDashboard() {
-        return 'User dashboard';
+      return view('user.dashboard')->with('user', Auth::user()->with('customer')->first());
     }
 
 }
