@@ -59,6 +59,6 @@ class ImageStorage implements StorageContract
    */
   private function getFilePath($fileName)
   {
-    return storage_path() . $this->destinationPath . $fileName;
+    return public_path() . $this->destinationPath . $fileName;
   }
 }
