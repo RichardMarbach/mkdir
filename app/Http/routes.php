@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function() {
 
 // User routes
 Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@getUserDashboard']);
-Route::put('/users', ['as' => 'user.update', 'uses' => 'UserController@update']);
+Route::put('/users/{userId}', ['as' => 'user.update', 'uses' => 'UserController@update']);
 
 
 // Authentication routes
