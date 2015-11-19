@@ -21,11 +21,9 @@
           </a>
 
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Comedy</a></li>
-            <li><a href="#">SF</a></li>
-            <li><a href="#">Kids</a></li>
-            <li><a href="#">SF</a></li>
+            @foreach ($genres as $genre)
+              <li><a href="#">{{ $genre->genre }}</a></li>
+            @endforeach
           </ul>
         </li>
       </ul>
@@ -47,7 +45,7 @@
             </a>
           </li>
         @endif
-        
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <span class="caret"></span>
