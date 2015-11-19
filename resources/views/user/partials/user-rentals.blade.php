@@ -1,3 +1,3 @@
 <h2>Your Rentals</h2>
 
-{{$rentals}}
+@each('DVD.partials.dvd_rental', $rentals, 'rental', 'user.partials.no-rentals')
