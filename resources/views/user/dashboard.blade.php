@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-  {{ Auth::user()->customer->name }} Dashbaord
+  {{ $user->customer->name }} Dashbaord
 @endsection
 
 @section('content')
   <div class="container">
     <div class="col-md-6 user-rentals">
-      @include('user.partials.user-rentals')
+      @include('user.partials.user-rentals', ['rentals' => $user->customer->rentals])
     </div>
     
     <div class="col-md-6 user-details">

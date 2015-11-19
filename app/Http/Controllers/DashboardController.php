@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -14,11 +15,12 @@ class DashboardController extends Controller
     }
 
     public function getAdminDashboard() {
-        return view('admin.dashboard')->with('user', Auth::user()->with('customer')->first());
+        return view('admin.dashboard')->with('user', Auth::user()->with('customer.rentals')->first());
     }
 
     public function getUserDashboard() {
-      return view('user.dashboard');
+      $user = Auth::user()->with('customer.rentals')->find(Auth::user()->id);
+      return view('user.dashboard')->with('user', $user);
     }
 
 }
