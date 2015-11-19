@@ -15,7 +15,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 // Admin routes
 Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function() {
-    Route::get('dashboard', ['as' => 'admin.dashbaord', 'uses' => 'DashboardController@getAdminDashboard']);
+    Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@getAdminDashboard']);
 });
 
 // User routes
