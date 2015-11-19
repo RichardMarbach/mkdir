@@ -19,7 +19,7 @@ class ImageStorage implements StorageContract
    * Image dimensions (width x height) in pixels
    * @var array
    */
-  private $dimensions = array(150, 300);
+  private $dimensions = [1000, 600];
 
   /**
    * Stores a image in the designated folder
