@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  {{ $user->customer->name }} Dashbaord
+  {{ $user->customer->name }} Dashboard
 @endsection
 
 @section('content')
