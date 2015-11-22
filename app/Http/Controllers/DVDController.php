@@ -48,11 +48,9 @@ class DVDController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(DVDRepository $dvds, $id)
+    public function show(DVDRepository $dvds, Dvd $dvd, $id)
     {
-        $dvd = Dvd::where('id', '=', $id);
-
-        return view('DVD.showDVD')->with('dvd', $dvds->eagerLoadAll($dvd));
+        return view('DVD.showDVD')->with('dvd', $dvds->eagerLoadAll($dvd->find($id)));
     }
 
     /**
