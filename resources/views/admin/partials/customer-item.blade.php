@@ -17,8 +17,8 @@
         @endif
       </span>
     </h5>
-    <h5>Created on: <span>{{ date('F d, Y', strtotime($customer->created_at)) }}</span></h5>
-    <h5>Updated on: <span>{{ date('F d, Y', strtotime($customer->updated_at)) }}</span></h5>
+    <h5>Created on: <span>{{ Helper::prettifyDate($customer->created_at) }}</span></h5>
+    <h5>Updated on: <span>{{ Helper::prettifyDate($customer->updated_at) }}</span></h5>
 
     <button class="btn btn-default" data-toggle="modal" data-target="#edit-modal">Edit</button>
     <button class="btn btn-default" data-toggle="modal" data-target="#delete-modal">Delete</button>

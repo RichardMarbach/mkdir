@@ -20,4 +20,14 @@ class Helper
 
         return \Request::is($routes) ? "active" : '';
     }
+
+    /**
+     * Created a nicely formatted date string
+     * @param  Carbon\Carbon $date
+     * @return string
+     */
+    public static function prettifyDate($date)
+    {
+        return date('F d, Y', strtotime($date));
+    }
 }
