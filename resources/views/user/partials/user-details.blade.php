@@ -3,6 +3,8 @@
   <h2>Your details</h2>  
 </div>
 
+@include('common.errors')
+@include('common.success')
 
 {!! Form::open(['route' => ['user.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal']) !!}
   <div class="form-group">
