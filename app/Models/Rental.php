@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rental extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['start_date', 'due_date', 'return_date', 'customer_id', 'dvd_id'];
 
     protected $dates = ['created_at', 'updated_at', 'start_date', 'due_date', 'return_date', 'deleted_at'];

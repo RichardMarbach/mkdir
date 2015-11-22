@@ -43,3 +43,11 @@ Route::get('/createDVD', 'Admin\DVDController@createDVD');
 Route::get('/dvds', 'DVDController@index');
 
 Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => 'DVDController@show']);
+
+// api
+Route::group(['prefix' => 'api'], function() {
+    // Customer
+    Route::group(['prefix' => 'customer'], function() {
+        Route::get('/', ['as' => 'customer.index', 'uses' => 'CustomerController@index']);
+    });
+});
