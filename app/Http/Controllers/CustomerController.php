@@ -8,6 +8,7 @@ use App\Http\Requests\HandleCustomerRequest;
 use App\Http\Controllers\Controller;
 
 use App\Models\Customer;
+use Session;
 
 class CustomerController extends Controller
 {
@@ -40,7 +41,11 @@ class CustomerController extends Controller
      */
     public function store(HandleCustomerRequest $request)
     {
-        return $this->customer->insert($request);
+        $this->customer->create($request->all());
+
+        Session::flash('Success', 'Customer created');
+
+        return redirect()->back();
     }
 
     /**
@@ -65,7 +70,11 @@ class CustomerController extends Controller
     {
         $customer = $this->customer->findOrFail($id);
 
-        return $customer->save($request);
+        $customer->save($request);
+
+        Session::flash('Success', 'Customer details updated');
+
+        return redirect()->back();
     }
 
     /**
@@ -77,7 +86,10 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer = $this->customer->with('user')->findOrFail($id);
+        $customer->delete();
 
-        return $customer->delete();
+        Session::flash('Success', 'Customer deleted');
+
+        return redirect()->back();
     }
 }

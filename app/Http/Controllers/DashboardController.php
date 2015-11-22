@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
     public function getAdminDashboard() 
     {
-        return view('admin.dashboard')->with('users', $this->user->getAllUsers());
+        return view('admin.dashboard');
     }
 
     public function getAdminCustomers() 

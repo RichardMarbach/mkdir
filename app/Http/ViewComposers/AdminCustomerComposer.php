@@ -16,6 +16,6 @@ class AdminCustomerComposer
 
     public function compose(View $view)
     {
-        $view->with('users', $this->users->getAllUsers());
+        $view->with('customers', $this->users->getAllCustomers());
     }
 }
