@@ -5,5 +5,5 @@
 @endsection
 
 @section('management-pannel')
-  Customer
+  {{ $users }}
 @endsection

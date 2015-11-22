@@ -13,8 +13,22 @@ class UserRepository
         $this->user = $user;
     }
 
+    /**
+     * Retrieves specified user from database
+     * @param  User   $user
+     * @return Collection 
+     */
     public function getUser(User $user)
     {
         return $user->with('customer.rentals')->find($user->id);   
+    }
+
+    /**
+     * Retrieves all the users from the database
+     * @return Collection
+     */
+    public function getAllUsers()
+    {
+        return $this->user->with('customer.rentals')->get();
     }
 }
