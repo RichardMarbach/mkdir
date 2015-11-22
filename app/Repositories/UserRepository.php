@@ -20,7 +20,7 @@ class UserRepository
      */
     public function getUser(User $user)
     {
-        return $user->with('customer.rentals')->find($user->id);   
+        return $user->with('customer.rentals', 'roles')->find($user->id);   
     }
 
     /**
@@ -29,6 +29,6 @@ class UserRepository
      */
     public function getAllUsers()
     {
-        return $this->user->with('customer.rentals')->get();
+        return $this->user->with('customer.rentals', 'roles')->get();
     }
 }
