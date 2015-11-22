@@ -2,15 +2,18 @@
 
 namespace App\Repositories;
 
+use App\Models\Customer;
 use App\Models\User;
 
 class UserRepository
 {
     private $user;
+    private $customer;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Customer $customer)
     {
         $this->user = $user;
+        $this->customer = $customer;
     }
 
     /**
@@ -30,5 +33,11 @@ class UserRepository
     public function getAllUsers()
     {
         return $this->user->with('customer.rentals', 'roles')->get();
+    }
+
+    /** Retrieves all customers */
+    public function getAllCustomers()
+    {
+        return $this->customer->with('user.roles', 'rentals')->get();
     }
 }

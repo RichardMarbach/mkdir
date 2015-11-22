@@ -6,7 +6,7 @@
 
 @section('content')
   <div class="container">
-    <h1>{{ $dvd->dvd_info->title }}</h1>
+    <h1>{{}}</h1>
 
 	<div>
     	<img

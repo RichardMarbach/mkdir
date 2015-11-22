@@ -21,11 +21,7 @@ class DVDRepository
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function eagerLoadAllDvds() {
-      return $this->dvd->with(
-        'price', 'rentals.customers.users', 
-        'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres', 
-        'languages', 'subtitles'
-      )->get();
+      return $this->eagerLoadDvd()->get();
     }
 
     /**
@@ -33,12 +29,8 @@ class DVDRepository
      * @param  Dvd    $dvd 
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function eagerLoadAll(DVD $dvd) {
-      return $dvd->with(
-        'price', 'rentals.customers.users', 
-        'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres',
-        'languages', 'subtitles'
-      )->get();
+    public function eagerLoadAll($id) {
+      return $this->eagerLoadDvd()->find($id);
     }
 
     /**
@@ -58,6 +50,16 @@ class DVDRepository
         return $this->eagerLoadDvdInfo()->paginate($pageCount);
     }
 
+    /** Eagerly load all the related dvd fields */
+    private function eagerLoadDvd() {
+        return $this->dvd->with(
+            'price', 'rentals.customers.users', 
+            'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres',
+            'languages', 'subtitles'
+        );
+    }
+
+    /** Eagerly load all the dvd_info fields */
     private function eagerLoadDvdInfo() {
         return $this->dvdInfo->with(
         'producers', 'genres', 'actors', 
