@@ -33,7 +33,7 @@ class DVDRepository
      * @param  Dvd    $dvd 
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function eagerLoadAll(Dvd $dvd) {
+    public function eagerLoadAll(DVD $dvd) {
       return $dvd->with(
         'price', 'rentals.customers.users', 
         'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres',
