@@ -38,8 +38,7 @@
   </div>
 
   </div>
-  </div>
-
-  <div>
-      @include('common.errors')
-  </div>
+</div>
+<div>
+    @include('common.errors')
+</div>
