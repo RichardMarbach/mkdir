@@ -9,7 +9,7 @@
 @section('content')
     @include('common.errors')
 
-{!! Form::open(['url' => '/createDVD', 'method' => 'post']) !!}
+{!! Form::open(['url' => '/create', 'method' => 'post']) !!}
 
 <h3>DVD Info</h3>
 
@@ -43,7 +43,7 @@
 
 <div>
     {!! Form::label('producer_name', 'Producer') !!}
-    {!! Form::select('producer_name', array('')) !!}
+    {!! Form::text('producer_name') !!}
 </div>
 
 <div>
@@ -59,8 +59,10 @@
 <h3> Cast </h3>
 
 <div>
-    {!! Form::label('actor_name', 'Cast') !!}
+    {!! Form::label('actor_name', 'Actor') !!}
     {!! Form::text('actor_name') !!}
+    {!! Form::label('character_name', 'Character') !!}
+    {!! Form::text('character_name') !!}
 </div>
 
 <div>
@@ -84,9 +86,6 @@
 <div>
     {!! Form::label('Price') !!}
     {!! Form::number('price_whole', null) !!}
-    {!! Form::label('price_whole', ' $') !!}
-    {!! Form::number('price_cents', null) !!}
-    {!! Form::label('price_cents', 'c') !!}
 </div>
 
 <div>
