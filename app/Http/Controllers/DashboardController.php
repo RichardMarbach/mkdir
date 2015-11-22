@@ -19,12 +19,29 @@ class DashboardController extends Controller
         $this->user = $user;
     }
 
-    public function getAdminDashboard() {
-        return view('admin.dashboard')->with('user', $this->user->getUser(Auth::user()));
+    public function getUserDashboard() 
+    {
+      return view('user.dashboard')->with('user', $this->user->getUser(Auth::user()));
     }
 
-    public function getUserDashboard() {
-      return view('user.dashboard')->with('user', $this->user->getUser(Auth::user()));
+    public function getAdminDashboard() 
+    {
+        return view('admin.dashboard')->with('users', $this->user->getAllUsers());
+    }
+
+    public function getAdminCustomers() 
+    {
+        return view('admin.management-pannels.customers');
+    }
+
+    public function getAdminDvds()
+    {
+        return view('admin.management-pannels.dvds');
+    }
+
+    public function getAdminRentals()
+    {
+        return view('admin.management-pannels.rentals');
     }
 
 }

@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ImageStorageServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
 
         /*
          * Collectives
@@ -208,6 +209,7 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'HTML'      => Collective\Html\HtmlFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
+        'Helper'    => App\Helper\HelperFacade::class,
     ],
 
 ];

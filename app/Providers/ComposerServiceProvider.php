@@ -14,6 +14,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->composeNavigation();
+        $this->composeDashboard();
     }
 
     /**
@@ -33,6 +34,16 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(
             'layouts.nav', \App\Http\ViewComposers\NavbarComposer::class
+        );
+    }
+
+    /**
+     * Composes the admin dashbaord
+     */
+    private function composeDashboard()
+    {
+        view()->composer(
+            'admin.management-pannels.customers', \App\Http\ViewComposers\AdminCustomerComposer::class
         );
     }
 }
