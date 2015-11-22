@@ -76,7 +76,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = $this->customer->findOrFail($id);
+        $customer = $this->customer->with('user')->findOrFail($id);
 
         return $customer->delete();
     }

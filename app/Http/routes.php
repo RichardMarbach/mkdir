@@ -49,5 +49,9 @@ Route::group(['prefix' => 'api'], function() {
     // Customer
     Route::group(['prefix' => 'customer'], function() {
         Route::get('/', ['as' => 'customer.index', 'uses' => 'CustomerController@index']);
+        Route::post('/', ['as' => 'customer.store', 'uses' => 'CustomerController@store']);
+        Route::get('{id}', ['as' => 'customer.show', 'uses' => 'CustomerController@show']);
+        Route::put('{id}', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
+        Route::delete('{id}', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
     });
 });
