@@ -22,7 +22,5 @@
     	<h2>Description</h2>
     	<p>{{ $dvd->dvd_info->description }}</p>
     </div>
-
-    {!! $dvds->render() !!}
   </div>
 @endsection
