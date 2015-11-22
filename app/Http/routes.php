@@ -38,8 +38,8 @@ Route::get('/logout', 'Auth\AuthController@getLogout');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
-//DVD creation routes
+// DVD creation routes
 Route::get('/createDVD', 'Admin\DVDController@createDVD');
 Route::get('/dvds', 'DVDController@index');
 
-Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => function() {}]);
+Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => 'DVDController@show']);

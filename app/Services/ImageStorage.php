@@ -45,7 +45,7 @@ class ImageStorage implements StorageContract
    * @param  string $fileName
    * @return bool
    */
-  public function delete($fileName)
+  public function delete($fileName = null)
   {
     $filePath = $this->getFilePath($fileName);
 

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Repositories\DVDRepository;
+use App\Models\DVD;
 
 class DVDController extends Controller
 {
@@ -48,9 +49,12 @@ class DVDController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+    public function show(DVDRepository $dvds, DVD $dvd, $id)
     {
-        //
+        $dvd = Dvd::where('id', '=', $id);
+
+        return view('DVD.showDVD')->with('dvd', $dvds->eagerLoadAll($dvd));
     }
 
     /**
