@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\DVD;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Session;
 use App\Repositories\DVDRepository;
 
 class DVDController extends Controller
@@ -37,9 +37,13 @@ class DVDController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, DVDRepository $dvds)
     {
-        DVDRepository::create($request);
+        $dvds->create($request->all());
+
+        Session::flash('success', 'Added dvd');
+
+        return redirect()->back();
     }
 
     /**

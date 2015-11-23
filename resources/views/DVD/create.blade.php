@@ -86,11 +86,15 @@
 <div>
     {!! Form::label('Price') !!}
     {!! Form::number('price_whole', null) !!}
+    ,
+    {!! Form::number('price_cents', null) !!}
 </div>
 
 <div>
     {!! Form::label('Late Fee') !!}
-    {!! Form::number('late_fee', null) !!}
+    {!! Form::number('late_fee_whole', null) !!}
+    ,
+    {!! Form::number('late_fee_cents', null) !!}
     {!! Form::label('late_fee', '$') !!}
 </div>
 
@@ -99,6 +103,16 @@
     {!! Form::number('discount', null) !!}
     {!! Form::label('discount', '%') !!}
 </div>
+
+<div>
+    {!! Form::label('points', 'Points') !!}
+    {!! Form::number('points') !!}
+</div>
+<div>
+    {!! Form::label('stock', 'Stock') !!}
+    {!! Form::number('stock') !!}
+</div>
+
 <div>
     <br>
     {!! Form::submit('Add') !!}

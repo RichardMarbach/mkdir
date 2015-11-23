@@ -39,8 +39,6 @@ Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
 
-// DVD creation routes
-Route::get('/createDVD', 'Admin\DVDController@createDVD');
 
 Route::get('/dvds', 'DVDController@index');
 
@@ -60,5 +58,14 @@ Route::group(['prefix' => 'api'], function() {
         Route::put('{id}', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
         Route::delete('{id}', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
     });
+<<<<<<< 4f6ac610f165e354da007195f4c4e90c8ff4bb85
 });
 
+=======
+
+    // dvds
+    Route::group(['prefix' => 'dvd'], function() {
+        Route::post('/', ['as' => 'dvd.store', 'uses' => 'Admin\DVDController@store']);
+    });
+});
+>>>>>>> Refactored dvd create method
