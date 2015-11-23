@@ -13,9 +13,8 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // view()->composer(
-        //     'DVD.listing', \App\Composers\DVDComposer::class
-        // );
+        $this->composeNavigation();
+        $this->composeDashboard();
     }
 
     /**
@@ -26,5 +25,25 @@ class ComposerServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     * Compose the navigation bar 
+     */
+    private function composeNavigation()
+    {
+        view()->composer(
+            'layouts.nav', \App\Http\ViewComposers\NavbarComposer::class
+        );
+    }
+
+    /**
+     * Composes the admin dashbaord
+     */
+    private function composeDashboard()
+    {
+        view()->composer(
+            'admin.management-pannels.customers', \App\Http\ViewComposers\AdminCustomerComposer::class
+        );
     }
 }

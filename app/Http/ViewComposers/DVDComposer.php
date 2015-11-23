@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Composers;
+namespace App\Http\ViewComposers;
 
 use Illuminate\Contracts\View\View;
 use App\Repositories\DVDRepository as DVDRepository;

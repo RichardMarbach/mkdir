@@ -11,17 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+// Admin routes
+Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function() {
+    Route::group(['prefix' => 'dashboard'], function () {
+        Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@getAdminDashboard']);
+
+        Route::get('customers', ['as' => 'admin.dashboard.customers', 'uses' => 'DashboardController@getAdminCustomers']);
+        Route::get('dvds', ['as' => 'admin.dashboard.dvds', 'uses' => 'DashboardController@getAdminDvds']);
+        Route::get('rentals', ['as' => 'admin.dashboard.rentals', 'uses' => 'DashboardController@getAdminRentals']);
+    });
 });
 
-Route::get('/test', function() {
-  return 'Secret';
-})->middleware('role:admin');
+// User routes
+Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@getUserDashboard']);
+Route::put('/users/{userId}', ['as' => 'user.update', 'uses' => 'UserController@update']);
 
-Route::get('/dashboard', function() {
-  return 'Dashboard';
-});
 
 // Authentication routes
 Route::get('/login', 'Auth\AuthController@getLogin');
@@ -38,4 +44,3 @@ Route::post('/create', 'Admin\DVDController@store');
 Route::get('/dvds', 'DVDController@index');
 
 Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => function() {}]);
-
