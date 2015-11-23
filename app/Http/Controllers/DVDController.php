@@ -56,6 +56,19 @@ class DVDController extends Controller
     }
 
     /**
+     * Retrieve the specified resource in storage
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param App\Repositories\DVDRepository $dvds
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, DVDRepository $dvds)
+    {
+        $title = $request->input('title');
+        return view('DVD.listing')->with('dvds', $dvds->retrieveDvds($title));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
