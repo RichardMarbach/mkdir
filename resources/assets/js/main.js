@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  $('#create-customer').on('show.bs.modal', function (event) {
+  $('#create-customer-modal').on('show.bs.modal', function (event) {
     var modal = $(this);
     var submitBtn = modal.find('#modal-submit');
     var form = modal.find('#create-customer-form');
