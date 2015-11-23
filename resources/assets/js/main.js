@@ -24,7 +24,7 @@
 
     var details = {
       id: customerBox.data('id'),
-      email: customerBox.find('[data-email]').data('email'),
+      name: customerBox.find('[data-name]').data('name'),
       address: customerBox.find('[data-address]').data('address'),
       phone: customerBox.find('[data-phone]').data('phone'),
       points: customerBox.find('[data-points]').data('points'),
@@ -36,7 +36,11 @@
     form.attr('action', idPath);
 
     // Fill default details
-    
+    modal.find('#name').val(details.name);
+    modal.find('#phone_number').val(details.phone);
+    modal.find('#address').val(details.address);
+    modal.find('#points').val(details.points);
+    modal.find('#admin').prop('checked', details.admin);
 
     submitBtn.on('click', function() {
       form.submit();

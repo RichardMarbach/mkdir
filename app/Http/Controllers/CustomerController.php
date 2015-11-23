@@ -43,7 +43,7 @@ class CustomerController extends Controller
     {
         $this->customer->create($request->all());
 
-        Session::flash('Success', 'Customer created');
+        Session::flash('success', 'Customer created');
 
         return redirect()->back();
     }
@@ -69,10 +69,9 @@ class CustomerController extends Controller
     public function update(HandleCustomerRequest $request, $id)
     {
         $customer = $this->customer->findOrFail($id);
+        $customer->update($request->all());
 
-        $customer->save($request);
-
-        Session::flash('Success', 'Customer details updated');
+        Session::flash('success', 'Customer details updated');
 
         return redirect()->back();
     }
@@ -88,7 +87,7 @@ class CustomerController extends Controller
         $customer = $this->customer->with('user')->findOrFail($id);
         $customer->delete();
 
-        Session::flash('Success', 'Customer deleted');
+        Session::flash('success', 'Customer deleted');
 
         return redirect()->back();
     }
