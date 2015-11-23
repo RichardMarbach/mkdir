@@ -26,6 +26,10 @@
     <h5>Updated on: <span>{{ Helper::prettifyDate($customer->updated_at) }}</span></h5>
 
     <button class="btn btn-default" data-toggle="modal" data-target="#customer-edit-modal">Edit</button>
-    <button class="btn btn-default" data-toggle="modal" data-target="#delete-modal">Delete</button>
+    <button id="confirm-delete" class="btn btn-default" 
+      data-toggle="modal" data-target="#delete-modal" 
+      data-type="customer" data-id="{{ $customer->id }}">
+      Delete
+    </button>
   </div>
 </div>
