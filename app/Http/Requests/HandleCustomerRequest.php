@@ -27,7 +27,6 @@ class HandleCustomerRequest extends Request
         return [
             'name'         => 'required|min:2',
             'address'      => 'string',
-            'admin'        => 'boolean',
             'points'       => 'integer',
             'phone_number' => 'string' 
         ];

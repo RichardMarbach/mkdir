@@ -8,16 +8,19 @@ use App\Http\Requests\HandleCustomerRequest;
 use App\Http\Controllers\Controller;
 
 use App\Models\Customer;
+use App\Models\Role;
 use Session;
 
 class CustomerController extends Controller
 {
 
     private $customer;
+    private $role;
 
-    public function __construct(Customer $customer)
+    public function __construct(Customer $customer, Role $role)
     {
         $this->customer = $customer;
+        $this->role = $role;
 
         $this->middleware('auth');
         $this->middleware('role:admin');
@@ -70,6 +73,14 @@ class CustomerController extends Controller
     {
         $customer = $this->customer->findOrFail($id);
         $customer->update($request->all());
+
+        $role = $this->role->getRole('admin');
+
+        if ($request->admin) {
+            $customer->user->assignRole($role);
+        } else {
+            $customer->user->removeRole($role);
+        }
 
         Session::flash('success', 'Customer details updated');
 
