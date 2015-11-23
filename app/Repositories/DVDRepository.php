@@ -86,6 +86,7 @@ class DVDRepository
 
     /**
      * Add a dvd to the database
+     * This method is a db disaster but TIMEPRESSURE
      * @param  array  $input
      * @return bool
      */
@@ -107,18 +108,24 @@ class DVDRepository
             
             $input['price_id'] = $price->id;
 
-            // TODO: Handle multiple
-            $producer = Producer::firstOrCreate(['name' => $input['producer_name']]);
-            $genre = Genre::firstOrCreate(['genre' => $input['genre']]);
-            $actor = Actor::firstOrCreate(['name' => $input['actor_name']]);
-            $language = Language::firstOrCreate(['language' => $input['language_name']]);
-            $subtitle = Language::firstOrCreate(['language' => $input['language_name']]);
+            // Insert producers
+            for ($i = 0; $i < sizeof($input['producer_name']); $i++) { 
+                $producer = Producer::firstOrCreate(['name' => $input['producer_name'][$i]]);
+                $dvd->producers()->attach($producer);
+            }
 
-            // Attach relations
-            $dvd->producers()->attach($producer);
-            $dvd->genres()->attach($genre);
-            $dvd->actors()->attach($actor, ['character_name' => $input['character_name']]);
+            // Insert genres
+            for ($i = 0; $i < sizeof($input['genre']); $i++) { 
+                $genre = Genre::firstOrCreate(['genre' => $input['genre'][$i]]);
+                $dvd->genres()->attach($genre);
+            }
 
+            // Insert actors
+            for ($i = 0; $i < sizeof($input['actor_name']); $i++) { 
+                $actor = Actor::firstOrCreate(['name' => $input['actor_name'][$i]]);
+                $dvd->actors()->attach($actor, ['character_name' => $input['character_name'][$i]]);
+            }
+            
             // Add new dvd stock
             $newDvds = [];
             for ($i = 0; $i < $input['stock']; $i++) { 
@@ -128,10 +135,18 @@ class DVDRepository
             $dvd->dvds()->saveMany($newDvds);
 
             foreach ($newDvds as $newDvd) {
-                $newDvd->languages()->save($language);
-                $newDvd->subtitles()->save($subtitle);
-            }
+                // Insert languages
+                for ($i = 0; $i < sizeof($input['language_name']); $i++) { 
+                    $language = Language::firstOrCreate(['language' => $input['language_name'][$i]]);
+                    $newDvd->languages()->attach($actor);
+                }
 
+                // Insert subtitles
+                for ($i = 0; $i < sizeof($input['subtitle_name']); $i++) { 
+                    $subtitle = Language::firstOrCreate(['language' => $input['subtitle_name'][$i]]);
+                    $newDvd->subtitles()->attach($subtitle);
+                }
+            }
             DB::commit();
         } catch(Exception $e) {
             DB::rollBack();
