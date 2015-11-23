@@ -48,5 +48,19 @@
     });
   });
 
-  
+  $('#delete-modal').on('show.bs.modal', function(event) {
+    var sourceBtn = $(event.relatedTarget);
+    var target =  window.location.protocol + "//" + window.location.host + '/api/' + sourceBtn.data('type') + '/' + sourceBtn.data('id');
+    
+    var modal = $(this);
+    var submitBtn = modal.find('#confirm-delete');
+
+    var deleteForm = modal.find('#delete-form');
+    deleteForm.attr('action', target);
+
+    submitBtn.on('click', function() {
+      deleteForm.submit();
+      modal.hide();
+    });
+  });
 })()
