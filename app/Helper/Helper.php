@@ -32,7 +32,7 @@ class Helper
     }
 
     /**
-     * Is a user admin=
+     * Is a user admin?
      * @param  array   $roles
      * @return boolean       
      */

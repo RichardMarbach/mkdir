@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
-        <button type="button" class="btn btn-primary" id="#modal-submit">Create</button>
+        <button type="button" class="btn btn-primary" id="create-modal-submit">Create</button>
       </div>
     </div>
   </div>
