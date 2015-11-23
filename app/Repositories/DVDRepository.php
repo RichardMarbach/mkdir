@@ -42,6 +42,16 @@ class DVDRepository
     }
 
     /**
+     * Retrieves specific dvds by a dvd title
+     * @param string $title
+     * @param integer $pageCount
+     * @return mixed
+     */
+    public function retrieveDvds($title, $pageCount = 20) {
+        return $this->eagerLoadDvdInfo()->where('title', 'LIKE', '%'.$title.'%')->paginate($pageCount);
+    }
+
+    /**
      * Retrieves all dvds in pages
      * @param  integer $pageCount
      * @return mixed             

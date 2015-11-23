@@ -28,10 +28,12 @@
         </li>
       </ul>
 
-      <form class="navbar-form navbar-left" role="search">
+      <form method="post" action="{{ route('dvds.search') }}" enctype="multipart/form-data" class="navbar-form navbar-left" role="search">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name="title" class="form-control" placeholder="Search">
         </div>
+
         <button type="submit" class="btn btn-default">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
