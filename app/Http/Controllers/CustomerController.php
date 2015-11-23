@@ -76,10 +76,12 @@ class CustomerController extends Controller
 
         $role = $this->role->getRole('admin');
 
-        if ($request->admin) {
-            $customer->user->assignRole($role);
-        } else {
-            $customer->user->removeRole($role);
+        if ($customer->user) {
+            if ($request->admin) {
+                $customer->user->assignRole($role);
+            } else {
+                $customer->user->removeRole($role);
+            }
         }
 
         Session::flash('success', 'Customer details updated');
