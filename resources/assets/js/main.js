@@ -51,7 +51,7 @@
   $('#delete-modal').on('show.bs.modal', function(event) {
     var sourceBtn = $(event.relatedTarget);
     var target =  window.location.protocol + "//" + window.location.host + '/api/' + sourceBtn.data('type') + '/' + sourceBtn.data('id');
-    
+
     var modal = $(this);
     var submitBtn = modal.find('#confirm-delete');
 
@@ -64,3 +64,11 @@
     });
   });
 })()
+
+
+
+$(document).ready(function(){
+  $("#login").click(function(){
+      $("#loginModal").modal();
+  });
+});
