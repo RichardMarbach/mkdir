@@ -49,7 +49,7 @@
       <div class="form-group">
         {!! Form::label('birthdate', 'Birthdate', ['class' => 'control-label col-sm-2']) !!}
         <div class="col-sm-4">
-          {!! Form::date('birthdate', \Carbon\Carbon::now(), ['class' => 'form-control']); !!}
+          {!! Form::date('birthdate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
         </div>
       </div>
       
