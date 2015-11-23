@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
-    protected $fillable = ['price_whole', 'price_cents', 'late_fee', 'points'];
+    protected $fillable = ['price_whole', 'price_cents', 'late_fee_whole', 'late_fee_cents', 'points'];
 
     /**
      * @return mixed

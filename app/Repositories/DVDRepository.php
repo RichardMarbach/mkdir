@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use DB;
 use App\Models\Actor;
 use App\Models\DVD;
 use App\Models\DVDInfo;
@@ -15,7 +16,6 @@ use App\Models\Producer;
 class DVDRepository 
 {
     private $dvd;
-
     private $dvdInfo;
 
     public function __construct(DVD $dvd, DVDInfo $dvdInfo) {
@@ -74,23 +74,58 @@ class DVDRepository
       );
     }
 
-    public static function create($input){
-            $DVD = DVDInfo::firstOrCreate(['title'=>$input->title]);
-            $price = Price::firstOrCreate(['price'=>$input->price]);
-            $producer = Producer::firstOrCreate(['name'=>$input->producer_name]);
-            $DVD->producers()->attach($producer);
-            $genre = Genre::firstOrCreate(['genre'=>$input->genre]);
-            $DVD->genres()->attach($genre);
-            $actor = Actor::firstOrCreate(['name'=>$input->actor_name]);
-            $DVD->actors()->attach($actor,['character_name'=>$input->character_name]);
-            $inputArray = $input->all();
-            $inputArray['price_id'] = $price->id;
-            $DVD->dvds()->save(new DVD($inputArray));
-            $DVD = dvdInfo::find($DVD->id);
-            $language = Language::firstOrCreate(['language'=>$input->language_name]);
-            $DVD->dvds()->first()->languages()->save($language);
-            $subtitle = Language::firstOrCreate(['language'=>$input->subtitle_name]);
-            $DVD->dvds()->first()->languages()->save($subtitle);
+    /**
+     * Add a dvd to the database
+     * @param  array  $input
+     * @return bool
+     */
+    public function create(array $input){
+        DB::beginTransaction();
+        try {
+            $dvd = $this->dvdInfo->firstOrCreate([
+                'title'       => $input['title'], 
+                'description' => $input['description'], 
+                'length'      => $input['length']]);
+        
+            $price = Price::firstOrCreate([
+                'price_whole'    => $input['price_whole'],
+                'price_cents'    => $input['price_cents'],
+                'late_fee_whole' => $input['late_fee_whole'],
+                'late_fee_cents' => $input['late_fee_cents'],
+                'points'         => $input['points']
+                ]);
+            
+            $input['price_id'] = $price->id;
+
+            // TODO: Handle multiple
+            $producer = Producer::firstOrCreate(['name' => $input['producer_name']]);
+            $genre = Genre::firstOrCreate(['genre' => $input['genre']]);
+            $actor = Actor::firstOrCreate(['name' => $input['actor_name']]);
+            $language = Language::firstOrCreate(['language' => $input['language_name']]);
+            $subtitle = Language::firstOrCreate(['language' => $input['language_name']]);
+
+            // Attach relations
+            $dvd->producers()->attach($producer);
+            $dvd->genres()->attach($genre);
+            $dvd->actors()->attach($actor, ['character_name' => $input['character_name']]);
+
+            // Add new dvd stock
+            $newDvds = [];
+            for ($i = 0; $i < $input['stock']; $i++) { 
+                array_push($newDvds, new DVD($input));
+            }
+
+            $dvd->dvds()->saveMany($newDvds);
+
+            foreach ($newDvds as $newDvd) {
+                $newDvd->languages()->save($language);
+                $newDvd->subtitles()->save($subtitle);
+            }
+
+            DB::commit();
+        } catch(Exception $e) {
+            DB::rollBack();
+        }
     }
 
 }
