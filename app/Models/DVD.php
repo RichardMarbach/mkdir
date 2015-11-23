@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DVD extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'dvds';
 
     protected $fillable = ['discount', 'age_restriction', 'cover_image', 'price_id', 'dvd_info_id'];

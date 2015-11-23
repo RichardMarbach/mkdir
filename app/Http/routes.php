@@ -38,9 +38,24 @@ Route::get('/logout', 'Auth\AuthController@getLogout');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
+
 //DVD managing routes
 Route::get('/create', 'Admin\DVDController@create');
 Route::post('/create', 'Admin\DVDController@store');
-Route::get('/dvds', 'DVDController@index');
 
-Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => function() {}]);
+// DVD creation routes
+Route::get('/createDVD', 'Admin\DVDController@createDVD');
+Route::get('/dvds', 'DVDController@index');
+Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => 'DVDController@show']);
+
+// api
+Route::group(['prefix' => 'api'], function() {
+    // Customer
+    Route::group(['prefix' => 'customer'], function() {
+        Route::get('/', ['as' => 'customer.index', 'uses' => 'CustomerController@index']);
+        Route::post('/', ['as' => 'customer.store', 'uses' => 'CustomerController@store']);
+        Route::get('{id}', ['as' => 'customer.show', 'uses' => 'CustomerController@show']);
+        Route::put('{id}', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
+        Route::delete('{id}', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
+    });
+});
