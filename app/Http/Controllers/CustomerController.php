@@ -96,6 +96,7 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer = $this->customer->with('user')->findOrFail($id);
+        $customer->user()->delete();
         $customer->delete();
 
         Session::flash('success', 'Customer deleted');
