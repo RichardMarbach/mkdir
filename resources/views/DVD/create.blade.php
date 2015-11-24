@@ -8,6 +8,7 @@
     <div class="container-fluid">
         {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true]) !!}
             @include('common.errors')
+            @include('common.success')
             <div class="form-group row">
                 {!! Form::label('title', 'Title', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
@@ -165,9 +166,10 @@
                 </div>
             </div>
 
-            <div>
-                <br>
-                {!! Form::submit('Add') !!}
+            <div class="form-group">
+                <div class="col-sm-offset-2">
+                    {!! Form::submit('Add', ['class' => 'btn btn-primary']) !!}
+                </div>
             </div>
         {!! Form::close() !!}
     </div>
