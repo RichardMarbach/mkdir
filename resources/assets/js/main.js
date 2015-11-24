@@ -63,8 +63,19 @@
       modal.hide();
     });
   });
-})()
 
+  // DVD create form buttons
+  $(document).on('click', '#addGenre',function(event) {
+    var btnContainer = $(this).parent();
+    var group = btnContainer.parent();
+    var copy = group.clone();
+
+    btnContainer.remove();
+    copy.insertAfter(group);
+
+    event.preventDefault();
+  });
+})()
 
 
 $(document).ready(function(){
