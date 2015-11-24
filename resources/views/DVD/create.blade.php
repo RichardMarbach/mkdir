@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container-fluid">
-        {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+        {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true]) !!}
             @include('common.errors')
             <div class="form-group row">
                 {!! Form::label('title', 'Title', ['class' => 'control-label col-sm-2']) !!}
@@ -16,7 +16,7 @@
 
                 {!! Form::label('length', 'Length', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-1 small-input">
-                    {!! Form::number('length', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                    {!! Form::number('length', 60, ['class' => 'form-control', 'min' => 0]) !!}    
                 </div>
                 <label for="length" class="control-label">min</label>
             </div>
@@ -108,10 +108,10 @@
                 <div class="col-sm-3">
                     <div class="form-group row">
                         <div class="col-sm-1 tiny-input">
-                            {!! Form::number('price_whole', null, ['class' => 'form-control', 'min' => 0]) !!}
+                            {!! Form::number('price_whole', 0, ['class' => 'form-control', 'min' => 0]) !!}
                         </div>
                         <div class="col-sm-1  tiny-input">
-                             {!! Form::number('price_cents', null, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
+                             {!! Form::number('price_cents', 0, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
                         </div>
                         <label for="price_whole" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">$</span></label>
                     </div>
@@ -120,7 +120,7 @@
                 {!! Form::label('discount', 'Discount', ['class' => 'control-label col-sm-1']) !!}
                 <div class="form-group row">
                     <div class="col-sm-1  tiny-input">
-                        {!! Form::number('discount', null, ['class' => 'form-control', 'min' => 0]) !!}
+                        {!! Form::number('discount', 0, ['class' => 'form-control', 'min' => 0, 'max' => 100]) !!}
                     </div>
                     <label for="discount" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">%</span></label>
                 </div>
@@ -131,10 +131,10 @@
                 <div class="col-sm-3">
                     <div class="form-group row">
                         <div class="col-sm-1  tiny-input">
-                            {!! Form::number('late_fee_whole', null, ['class' => 'form-control', 'min' => 0]) !!}
+                            {!! Form::number('late_fee_whole', 0, ['class' => 'form-control', 'min' => 0]) !!}
                         </div>
                         <div class="col-sm-1  tiny-input">
-                             {!! Form::number('late_fee_cents', null, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
+                             {!! Form::number('late_fee_cents', 0, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
                         </div>
                         <label for="late_fee_whole" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">$</span></label>
                     </div>
@@ -143,7 +143,7 @@
                 {!! Form::label('points', 'Points', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
                     <div class="small-input">
-                        {!! Form::number('points', null, ['class' => 'form-control', 'min' => 0]) !!} 
+                        {!! Form::number('points', 0, ['class' => 'form-control', 'min' => 0]) !!} 
                     </div>    
                 </div>
             </div>
@@ -152,7 +152,7 @@
                 {!! Form::label('age_restriction', 'PG', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
                     <div class="form-group col-sm-1 tiny-input">
-                        {!! Form::number('age_restriction', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                        {!! Form::number('age_restriction', 0, ['class' => 'form-control', 'min' => 0]) !!}    
                     </div>
                 </div>
                 
@@ -160,7 +160,7 @@
                 {!! Form::label('stock', 'Stock', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
                     <div class="small-input">
-                        {!! Form::number('stock', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                        {!! Form::number('stock', 1, ['class' => 'form-control', 'min' => 0]) !!}    
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use App\Repositories\DVDRepository;
 use App\Services\Contracts\ImageStorageContract as ImageStorage;
+use App\Http\Requests\HandleDvdRequest;
 
 class DVDController extends Controller
 {
@@ -38,10 +39,8 @@ class DVDController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, DVDRepository $dvds, ImageStorage $storage)
+    public function store(HandleDvdRequest $request, DVDRepository $dvds, ImageStorage $storage)
     {
-        dd($request->all());
-
         if ($request->cover_image) {
             $request->cover_image = $storage->store($request->cover_image);
         }
