@@ -40,4 +40,6 @@ class DVDInfo extends Model
     return $this->belongsToMany('App\Models\Actor', 'actor_roles', 'dvd_info_id', 'actor_id')
         ->withPivot('character_name')->withTimestamps();
   }
+
+
 }

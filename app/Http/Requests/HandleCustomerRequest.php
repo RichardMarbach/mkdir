@@ -25,7 +25,10 @@ class HandleCustomerRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|min:2'
+            'name'         => 'required|min:2',
+            'address'      => 'string',
+            'points'       => 'integer',
+            'phone_number' => 'string' 
         ];
     }
 }

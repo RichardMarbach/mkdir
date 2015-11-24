@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="customer-edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -6,11 +6,11 @@
         <h4 class="modal-title" id="myModalLabel">Edit Customer</h4>
       </div>
       <div class="modal-body">
-        ...
+        @include('admin.partials.forms.customer-edit-form')
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+        <button type="button" class="btn btn-primary" id="edit-modal-submit">Save changes</button>
       </div>
     </div>
   </div>

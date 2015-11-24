@@ -12,7 +12,7 @@
     @each('admin.partials.customer-item', $customers, 'customer')
   </div>
   <div class="col-sm-2 small-top-buffer">
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-customer">Add new Customer</button>
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-customer-modal">Add new Customer</button>
   </div>
 
   @include('admin.partials.edit-customer-modal')

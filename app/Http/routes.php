@@ -38,6 +38,11 @@ Route::get('/logout', 'Auth\AuthController@getLogout');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
+
+//DVD managing routes
+Route::get('/create', 'Admin\DVDController@create');
+Route::post('/create', 'Admin\DVDController@store');
+
 // DVD creation routes
 Route::get('/createDVD', 'Admin\DVDController@createDVD');
 
