@@ -86,7 +86,7 @@ class DVDRepository
 
     /**
      * Add a dvd to the database
-     * This method is a db disaster but TIMEPRESSURE
+     * If you're curious where a million db requests are coming from, it's here.
      * @param  array  $input
      * @return bool
      */
