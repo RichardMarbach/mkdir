@@ -14,8 +14,30 @@
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}    
                 </div>
 
-                {!! Form::label('genre[]', 'Genre', ['class' => 'control-label col-sm-1'] ) !!}
-                <div class="col-sm-2">
+                {!! Form::label('length', 'Length', ['class' => 'control-label col-sm-1']) !!}
+                <div class="col-sm-1 small-input">
+                    {!! Form::number('length', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                </div>
+                <label for="length" class="control-label">min</label>
+            </div>
+
+            <div class="form-group row">
+                {!! Form::label('description', 'Description', ['class' => 'control-label col-sm-2']) !!}
+                <div class="col-sm-3">
+                    {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 5]) !!}    
+                </div>
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('cover_image', 'Cover', ['class' => 'control-label col-sm-2']) !!}
+                <div class="col-sm-3">
+                    {!! Form::file('cover_image', null, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {!! Form::label('genre[]', 'Genre', ['class' => 'control-label col-sm-2'] ) !!}
+                <div class="col-sm-3">
                     {!! Form::select('genre[]', [
                         'Action' => 'Action',
                         'Adventure' => 'Adventure',
@@ -27,25 +49,9 @@
                         'Sci-Fi' => 'Sci-Fi',
                         'Thriller' => 'Thriller'], null, ['class' => 'form-control']) !!}
                 </div>
-            </div>
 
-            <div class="form-group row">
-                {!! Form::label('description', 'Description', ['class' => 'control-label col-sm-2']) !!}
-                <div class="col-sm-3">
-                    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}    
-                </div>
-
-                {!! Form::label('length', 'Length', ['class' => 'control-label col-sm-1']) !!}
-                <div class="col-sm-1 small-input">
-                    {!! Form::number('length', null, ['class' => 'form-control', 'min' => 0]) !!}    
-                </div>
-                <label for="length" class="control-label">min</label>
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('cover_image', 'Cover', ['class' => 'control-label col-sm-2']) !!}
-                <div class="col-sm-3">
-                    {!! Form::file('cover_image', null, ['class' => 'form-control']) !!}
+                <div class="col-sm-1 col-sm-offset-4">
+                    <button class="btn btn-primary" id="addGenre">Add Genre</button>
                 </div>
             </div>
 
@@ -54,6 +60,10 @@
                 <div class="col-sm-3">
                     {!! Form::text('producer_name[]', null, ['class' => 'form-control']) !!}        
                 </div>
+
+                <div class="col-sm-1 col-sm-offset-4">
+                    <button class="btn btn-primary" id="addActor">Add Producer</button>
+                </div>
             </div>
 
             <div class="form-group row">
@@ -61,9 +71,13 @@
                 <div class="col-sm-3">
                     {!! Form::text('actor_name[]', null, ['class' => 'form-control']) !!}    
                 </div>
-                {!! Form::label('character_name[]', 'Character', ['class' => 'control-label col-sm-1']) !!}
+                {!! Form::label('character_name[]', 'as', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
                     {!! Form::text('character_name[]', null, ['class' => 'form-control']) !!}        
+                </div>
+
+                <div class="col-sm-1">
+                    <button class="btn btn-primary" id="addProducer">Add Actor</button>
                 </div>
             </div>
 
@@ -72,12 +86,20 @@
                 <div class="col-sm-3">
                     {!! Form::text('language_name[]', null, ['class' => 'form-control']) !!}
                 </div>
+
+                <div class="col-sm-1 col-sm-offset-4">
+                    <button class="btn btn-primary" id="addLanguage">Add Language</button>
+                </div>
             </div>
 
             <div class="form-group">
                 {!! Form::label('subtitle_name[]', 'Subtitles', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
                     {!! Form::text('subtitle_name[]', null, ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="col-sm-1 col-sm-offset-4">
+                    <button class="btn btn-primary" id="addSubtitle">Add Subtitle</button>
                 </div>
             </div>
 
