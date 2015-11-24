@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 use Session;
 use App\Repositories\DVDRepository;
+use App\Services\Contracts\ImageStorageContract as ImageStorage;
 
 class DVDController extends Controller
 {
@@ -37,8 +38,14 @@ class DVDController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, DVDRepository $dvds)
+    public function store(Request $request, DVDRepository $dvds, ImageStorage $storage)
     {
+        dd($request->all());
+
+        if ($request->cover_image) {
+            $request->cover_image = $storage->store($request->cover_image);
+        }
+
         $dvds->create($request->all());
 
         Session::flash('success', 'Added dvd');
