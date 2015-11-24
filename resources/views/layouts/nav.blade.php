@@ -58,7 +58,7 @@
               @endif
               <li><a href="{{ url('/logout')}}">Logout</a></li>
             @else
-              <li><a href="{{ url('/login') }}">Sign in</a></li>
+              <li><a data-target="#loginModal" data-toggle="modal">Sign in</a></li>
               <li><a href="{{ url('/register') }}">Join us</a></li>
             @endif
           </ul>
