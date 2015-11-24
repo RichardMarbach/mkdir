@@ -119,26 +119,28 @@
                 </div>
 
                 {!! Form::label('points', 'Points', ['class' => 'control-label col-sm-1']) !!}
-                <div class="col-sm-1 tiny-input">
-                    {!! Form::number('points', null, ['class' => 'form-control', 'min' => 0]) !!} 
+                <div class="col-sm-3">
+                    <div class="small-input">
+                        {!! Form::number('points', null, ['class' => 'form-control', 'min' => 0]) !!} 
+                    </div>    
                 </div>
             </div>
 
             <div class="form-group row">
-                {!! Form::label('stock', 'Stock', ['class' => 'control-label col-sm-2']) !!}
+                {!! Form::label('age_restriction', 'PG', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    <div class="tiny-input">
-                        {!! Form::number('stock', null, ['class' => 'form-control', 'min' => 0]) !!}
+                    <div class="form-group col-sm-1 tiny-input">
+                        {!! Form::number('age_restriction', null, ['class' => 'form-control', 'min' => 0]) !!}    
                     </div>
                 </div>
+                
 
-                {!! Form::label('age_restriction', 'PG', ['class' => 'control-label col-sm-1']) !!}
-                <div class="col-sm-1 tiny-input">
-                    {!! Form::number('age_restriction', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                {!! Form::label('stock', 'Stock', ['class' => 'control-label col-sm-1']) !!}
+                <div class="col-sm-3">
+                    <div class="small-input">
+                        {!! Form::number('stock', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                    </div>
                 </div>
-                <label for="age_restriction" class="control-label col-sm-1 currency-delimiter">
-                    <span class="pull-left">years</span>
-                </label>
             </div>
 
             <div>
