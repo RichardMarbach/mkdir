@@ -11,14 +11,14 @@
       <span>{{ Helper::prettifyDate($customer->user ? $customer->user->birthdate : '') }}</span>
     </h5>
     <h5 data-admin="{{ $customer->user ? Helper::isAdmin($customer->user->roles) : 0 }}">
-      Roles: 
+      Role: 
       <span>
         @if ($customer->user)
           @foreach($customer->user->roles as $role)
             {{ $role->name }}
           @endforeach
         @else
-          None
+          Customer
         @endif
       </span>
     </h5>
