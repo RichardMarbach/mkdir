@@ -12,7 +12,7 @@ class DVD extends Model
 
     protected $table = 'dvds';
 
-    protected $fillable = ['discount', 'age_restriction', 'cover_image', 'price_id', 'dvd_info_id'];
+    protected $fillable = ['discount', 'age_restriction', 'price_id', 'dvd_info_id'];
 
     /**
      * Is the dvd rented?

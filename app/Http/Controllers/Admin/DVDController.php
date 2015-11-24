@@ -41,11 +41,13 @@ class DVDController extends Controller
      */
     public function store(HandleDvdRequest $request, DVDRepository $dvds, ImageStorage $storage)
     {
+        $input = $request->all();
+        
         if ($request->cover_image) {
-            $request->cover_image = $storage->store($request->cover_image);
+            $input['cover_image'] = $storage->store($request->cover_image);
         }
 
-        $dvds->create($request->all());
+        $dvds->create($input);
 
         Session::flash('success', 'Added dvd');
 

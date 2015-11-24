@@ -94,7 +94,8 @@ class DVDRepository
         $dvd = $this->dvdInfo->firstOrCreate([
             'title'       => $input['title'], 
             'description' => $input['description'], 
-            'length'      => $input['length']]);
+            'length'      => $input['length'],
+            'cover_image' => $input['cover_image']]);
     
         $price = Price::firstOrCreate([
             'price_whole'    => $input['price_whole'],

@@ -17,7 +17,7 @@ class CreateDvdInfoTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->smallInteger('length');
-            $table->string('cover_image');
+            $table->string('cover_image')->nullable();
             $table->timestamps();
         });
     }
