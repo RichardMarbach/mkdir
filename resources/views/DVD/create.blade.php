@@ -9,6 +9,7 @@
         {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true]) !!}
             @include('common.errors')
             @include('common.success')
+
             <div class="form-group row">
                 {!! Form::label('title', 'Title', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
@@ -39,16 +40,17 @@
             <div class="form-group row">
                 {!! Form::label('genre[]', 'Genre', ['class' => 'control-label col-sm-2'] ) !!}
                 <div class="col-sm-3">
-                    {!! Form::select('genre[]', [
-                        'Action' => 'Action',
-                        'Adventure' => 'Adventure',
-                        'Comedy' => 'Comedy',
-                        'Crime' => 'Crime',
-                        'Fantasy' => 'Fantasy',
-                        'Horror' => 'Horror',
-                        'Drama' => 'Darma',
-                        'Sci-Fi' => 'Sci-Fi',
-                        'Thriller' => 'Thriller'], null, ['class' => 'form-control']) !!}
+                    <select class="form-control" id="genre[]" name="genre[]">
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Drama">Darma</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>                    
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -59,7 +61,7 @@
             <div class="form-group row">
                 {!! Form::label('producer_name[]', 'Producer', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('producer_name[]', null, ['class' => 'form-control']) !!}        
+                    <input class="form-control" name="producer_name[]" type="text" id="producer_name[]">
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -70,11 +72,11 @@
             <div class="form-group row">
                 {!! Form::label('actor_name[]', 'Actor', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('actor_name[]', null, ['class' => 'form-control']) !!}    
+                    <input class="form-control" name="actor_name[]" type="text" id="actor_name[]">
                 </div>
                 {!! Form::label('character_name[]', 'as', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('character_name[]', null, ['class' => 'form-control']) !!}        
+                    <input class="form-control" name="character_name[]" type="text" id="character_name[]">
                 </div>
 
                 <div class="col-sm-1">
@@ -85,7 +87,7 @@
             <div class="form-group">
                 {!! Form::label('language_name[]', 'Language', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('language_name[]', null, ['class' => 'form-control']) !!}
+                    <input class="form-control" name="language_name[]" type="text" id="language_name[]">
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -96,7 +98,7 @@
             <div class="form-group">
                 {!! Form::label('subtitle_name[]', 'Subtitles', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('subtitle_name[]', null, ['class' => 'form-control']) !!}
+                    <input class="form-control" name="subtitle_name[]" type="text" id="subtitle_name[]">
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">

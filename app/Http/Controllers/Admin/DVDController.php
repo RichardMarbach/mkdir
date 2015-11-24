@@ -43,9 +43,7 @@ class DVDController extends Controller
     {
         $input = $request->all();
         
-        if ($request->cover_image) {
-            $input['cover_image'] = $storage->store($request->cover_image);
-        }
+        $input['cover_image'] = $request->cover_image ? $storage->store($request->cover_image) : '';
 
         $dvds->create($input);
 
