@@ -21,11 +21,8 @@ class DVD extends Model
     public function isRented() 
     {
         return $this->rentals()
-            ->where('start_date', '>', Carbon::now())
-            ->orWhereNull('start_date')
-            ->where('due_date', '<', Carbon::now())
-            ->orWhereNull('due_date')
-            ->orWhere('return_date', '<=', Carbon::now())
+            ->where('start_date', '<', Carbon::now())
+            ->whereNull('return_date')
             ->count() != 0;
     }
 
@@ -44,12 +41,12 @@ class DVD extends Model
     public function stock() {
         return $this->leftJoin('rentals', 'dvds.id', '=', 'rentals.dvd_id')
             ->where('dvd_info_id', $this->dvd_info_id)
-            ->where('start_date', '>', Carbon::now())
-            ->orWhereNull('start_date')
-            ->where('due_date', '<', Carbon::now())
-            ->orWhereNull('due_date')
-            ->orWhere('return_date', '<=', Carbon::now())
-            ->count();
+            ->where(function($query) {
+                $query->where('start_date', '<', Carbon::now())
+                    ->where('return_date', '<=', Carbon::now())
+                    ->orWhereNull('start_date')
+                    ->whereNull('return_date');
+            })->count();  
     }
 
     /**
