@@ -65,4 +65,9 @@ Route::group(['prefix' => 'api'], function() {
         Route::put('{id}', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
         Route::delete('{id}', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
     });
+
+    // dvds
+    Route::group(['prefix' => 'dvd'], function() {
+        Route::post('/', ['as' => 'dvd.store', 'uses' => 'Admin\DVDController@store']);
+    });
 });

@@ -63,4 +63,45 @@
       modal.hide();
     });
   });
+
+  // DVD create form buttons
+  $(document).on('click', '#addGenre',function(event) {
+    var btnContainer = $(this).parent();
+    helpers.cloneFormInput(btnContainer);    
+    event.preventDefault();
+  });
+
+  $(document).on('click', '#addProducer',function(event) {
+    var btnContainer = $(this).parent();
+    helpers.cloneFormInput(btnContainer);    
+    event.preventDefault();
+  });
+
+  $(document).on('click', '#addLanguage',function(event) {
+    var btnContainer = $(this).parent();
+    helpers.cloneFormInput(btnContainer);    
+    event.preventDefault();
+  });
+
+  $(document).on('click', '#addSubtitle',function(event) {
+    var btnContainer = $(this).parent();
+    helpers.cloneFormInput(btnContainer);    
+    event.preventDefault();
+  });
+
+  $(document).on('click', '#addActor',function(event) {
+    var btnContainer = $(this).parent();
+    helpers.cloneFormInput(btnContainer);    
+    event.preventDefault();
+  });
+
+  var helpers = {
+    cloneFormInput: function(btn) {
+      var group = btn.parent();
+      var copy = group.clone();
+
+      btn.remove();
+      copy.insertAfter(group);
+    }
+  };
 })()

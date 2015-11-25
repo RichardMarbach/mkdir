@@ -8,7 +8,7 @@ class DVDInfo extends Model
 {
   protected $table = 'dvd_info';
 
-  protected $fillable = ['title', 'description', 'length'];
+  protected $fillable = ['title', 'description', 'length', 'cover_image'];
 
   /**
    * @return mixed

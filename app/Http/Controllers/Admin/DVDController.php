@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\DVD;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Session;
 use App\Repositories\DVDRepository;
+use App\Services\Contracts\ImageStorageContract as ImageStorage;
+use App\Http\Requests\HandleDvdRequest;
 
 class DVDController extends Controller
 {
@@ -37,9 +39,17 @@ class DVDController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HandleDvdRequest $request, DVDRepository $dvds, ImageStorage $storage)
     {
-        DVDRepository::create($request);
+        $input = $request->all();
+        
+        $input['cover_image'] = $request->cover_image ? $storage->store($request->cover_image) : '';
+
+        $dvds->create($input);
+
+        Session::flash('success', 'Added dvd');
+
+        return redirect()->back();
     }
 
     /**
