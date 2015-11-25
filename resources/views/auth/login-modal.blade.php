@@ -33,7 +33,10 @@
       </button>
       <p>Not a member? <a href="{{ url('register') }}">Sign Up</a></p>
     </div>
+  </div>
 
   </div>
 
+  <div>
+      @include('common.errors')
   </div>
