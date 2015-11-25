@@ -8,15 +8,18 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Repositories\UserRepository;
+use App\Repositories\DVDRepository;
 
 class DashboardController extends Controller
 {
     private $user;
+    private $dvds;
 
-    public function __construct(UserRepository $user) {
+    public function __construct(UserRepository $user, DVDRepository $dvds) {
         $this->middleware('auth');
 
         $this->user = $user;
+        $this->dvds = $dvds;
     }
 
     public function getUserDashboard() 
@@ -36,7 +39,7 @@ class DashboardController extends Controller
 
     public function getAdminDvds()
     {
-        return view('admin.management-pannels.dvds');
+        return view('admin.management-pannels.dvds')->with('dvds', $this->dvds->retrieveAllDvds());
     }
 
     public function getAdminRentals()
