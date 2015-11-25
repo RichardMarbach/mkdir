@@ -6,8 +6,10 @@
 
 @section('content')
     <div class="container-fluid">
-        {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+        {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true]) !!}
             @include('common.errors')
+            @include('common.success')
+
             <div class="form-group row">
                 {!! Form::label('title', 'Title', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
@@ -16,7 +18,7 @@
 
                 {!! Form::label('length', 'Length', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-1 small-input">
-                    {!! Form::number('length', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                    {!! Form::number('length', 60, ['class' => 'form-control', 'min' => 0]) !!}    
                 </div>
                 <label for="length" class="control-label">min</label>
             </div>
@@ -38,16 +40,17 @@
             <div class="form-group row">
                 {!! Form::label('genre[]', 'Genre', ['class' => 'control-label col-sm-2'] ) !!}
                 <div class="col-sm-3">
-                    {!! Form::select('genre[]', [
-                        'Action' => 'Action',
-                        'Adventure' => 'Adventure',
-                        'Comedy' => 'Comedy',
-                        'Crime' => 'Crime',
-                        'Fantasy' => 'Fantasy',
-                        'Horror' => 'Horror',
-                        'Drama' => 'Darma',
-                        'Sci-Fi' => 'Sci-Fi',
-                        'Thriller' => 'Thriller'], null, ['class' => 'form-control']) !!}
+                    <select class="form-control" id="genre[]" name="genre[]">
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Drama">Darma</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>                    
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -58,7 +61,7 @@
             <div class="form-group row">
                 {!! Form::label('producer_name[]', 'Producer', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('producer_name[]', null, ['class' => 'form-control']) !!}        
+                    <input class="form-control" name="producer_name[]" type="text" id="producer_name[]">
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -69,11 +72,11 @@
             <div class="form-group row">
                 {!! Form::label('actor_name[]', 'Actor', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('actor_name[]', null, ['class' => 'form-control']) !!}    
+                    <input class="form-control" name="actor_name[]" type="text" id="actor_name[]">
                 </div>
                 {!! Form::label('character_name[]', 'as', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('character_name[]', null, ['class' => 'form-control']) !!}        
+                    <input class="form-control" name="character_name[]" type="text" id="character_name[]">
                 </div>
 
                 <div class="col-sm-1">
@@ -84,7 +87,7 @@
             <div class="form-group">
                 {!! Form::label('language_name[]', 'Language', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('language_name[]', null, ['class' => 'form-control']) !!}
+                    <input class="form-control" name="language_name[]" type="text" id="language_name[]">
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -95,7 +98,7 @@
             <div class="form-group">
                 {!! Form::label('subtitle_name[]', 'Subtitles', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
-                    {!! Form::text('subtitle_name[]', null, ['class' => 'form-control']) !!}
+                    <input class="form-control" name="subtitle_name[]" type="text" id="subtitle_name[]">
                 </div>
 
                 <div class="col-sm-1 col-sm-offset-4">
@@ -108,10 +111,10 @@
                 <div class="col-sm-3">
                     <div class="form-group row">
                         <div class="col-sm-1 tiny-input">
-                            {!! Form::number('price_whole', null, ['class' => 'form-control', 'min' => 0]) !!}
+                            {!! Form::number('price_whole', 0, ['class' => 'form-control', 'min' => 0]) !!}
                         </div>
                         <div class="col-sm-1  tiny-input">
-                             {!! Form::number('price_cents', null, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
+                             {!! Form::number('price_cents', 0, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
                         </div>
                         <label for="price_whole" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">$</span></label>
                     </div>
@@ -120,7 +123,7 @@
                 {!! Form::label('discount', 'Discount', ['class' => 'control-label col-sm-1']) !!}
                 <div class="form-group row">
                     <div class="col-sm-1  tiny-input">
-                        {!! Form::number('discount', null, ['class' => 'form-control', 'min' => 0]) !!}
+                        {!! Form::number('discount', 0, ['class' => 'form-control', 'min' => 0, 'max' => 100]) !!}
                     </div>
                     <label for="discount" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">%</span></label>
                 </div>
@@ -131,10 +134,10 @@
                 <div class="col-sm-3">
                     <div class="form-group row">
                         <div class="col-sm-1  tiny-input">
-                            {!! Form::number('late_fee_whole', null, ['class' => 'form-control', 'min' => 0]) !!}
+                            {!! Form::number('late_fee_whole', 0, ['class' => 'form-control', 'min' => 0]) !!}
                         </div>
                         <div class="col-sm-1  tiny-input">
-                             {!! Form::number('late_fee_cents', null, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
+                             {!! Form::number('late_fee_cents', 0, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
                         </div>
                         <label for="late_fee_whole" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">$</span></label>
                     </div>
@@ -143,7 +146,7 @@
                 {!! Form::label('points', 'Points', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
                     <div class="small-input">
-                        {!! Form::number('points', null, ['class' => 'form-control', 'min' => 0]) !!} 
+                        {!! Form::number('points', 0, ['class' => 'form-control', 'min' => 0]) !!} 
                     </div>    
                 </div>
             </div>
@@ -152,7 +155,7 @@
                 {!! Form::label('age_restriction', 'PG', ['class' => 'control-label col-sm-2']) !!}
                 <div class="col-sm-3">
                     <div class="form-group col-sm-1 tiny-input">
-                        {!! Form::number('age_restriction', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                        {!! Form::number('age_restriction', 0, ['class' => 'form-control', 'min' => 0]) !!}    
                     </div>
                 </div>
                 
@@ -160,14 +163,15 @@
                 {!! Form::label('stock', 'Stock', ['class' => 'control-label col-sm-1']) !!}
                 <div class="col-sm-3">
                     <div class="small-input">
-                        {!! Form::number('stock', null, ['class' => 'form-control', 'min' => 0]) !!}    
+                        {!! Form::number('stock', 1, ['class' => 'form-control', 'min' => 0]) !!}    
                     </div>
                 </div>
             </div>
 
-            <div>
-                <br>
-                {!! Form::submit('Add') !!}
+            <div class="form-group">
+                <div class="col-sm-offset-2">
+                    {!! Form::submit('Add', ['class' => 'btn btn-primary']) !!}
+                </div>
             </div>
         {!! Form::close() !!}
     </div>

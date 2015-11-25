@@ -18,7 +18,6 @@ class CreateDvdsTable extends Migration
             $table->integer('price_id')->unsigned();
             $table->smallInteger('discount')->default(0);
             $table->smallInteger('age_restriction');
-            $table->string('cover_image')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

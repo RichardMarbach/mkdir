@@ -16,7 +16,7 @@ class ImageStorageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+          
     }
 
     /**
@@ -26,8 +26,8 @@ class ImageStorageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(App\Services\Contracts\ImageStorageContract::class, function() {
-            return new App\Services\ImageStorage();
+        $this->app->bind(\App\Services\Contracts\ImageStorageContract::class, function() {
+            return new \App\Services\ImageStorage();
         });
     }
 
@@ -38,6 +38,6 @@ class ImageStorageServiceProvider extends ServiceProvider
      */
     public function provides() 
     {
-        return [App\Services\Contracts\ImageStorageContract::class];
+        return [\App\Services\Contracts\ImageStorageContract::class];
     }
 }
