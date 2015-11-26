@@ -59,8 +59,8 @@ Route::group(['prefix' => 'api'], function() {
 
     // dvds
     Route::group(['prefix' => 'dvds'], function() {
-        Route::post('/', ['as' => 'dvd.store', 'uses' => 'Admin\DVDController@store']);
-        Route::put('{id}', ['as' => 'dvds.update', 'uses' => 'Admin\DVDCotroller@update']);
-        Route::delete('{id}', ['as' => 'dvds.destroy', 'uses' => 'Admin\DVDController@destroy']);
+        Route::post('/', ['as' => 'dvd.store', 'uses' => 'DVDController@store']);
+        Route::put('{id}', ['as' => 'dvds.update', 'uses' => 'DVDCotroller@update']);
+        Route::delete('{id}', ['as' => 'dvds.destroy', 'uses' => 'DVDController@destroy']);
     });
 });

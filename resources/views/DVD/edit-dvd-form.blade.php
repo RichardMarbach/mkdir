@@ -27,4 +27,58 @@
       </div>
   </div>
 
+  <div class="row">
+    {!! Form::label('price_whole', 'Price', ['class' => 'control-label col-sm-2']) !!}
+    <div class="col-sm-5">
+        <div class="form-group row">
+            <div class="col-sm-1 tiny-input">
+                {!! Form::number('price_whole', 0, ['class' => 'form-control', 'min' => 0]) !!}
+            </div>
+            <div class="col-sm-1  tiny-input">
+                 {!! Form::number('price_cents', 0, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
+            </div>
+            <label for="price_whole" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">$</span></label>
+        </div>
+    </div>
+
+    {!! Form::label('discount', 'Discount', ['class' => 'control-label col-sm-2']) !!}
+    <div class="form-group">
+        <div class="col-sm-1  tiny-input">
+            {!! Form::number('discount', 0, ['class' => 'form-control', 'min' => 0, 'max' => 100]) !!}
+        </div>
+        <label for="discount" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">%</span></label>
+    </div>
+  </div>
+
+  <div class="row">
+    {!! Form::label('late_fee_whole', 'Late Fee', ['class' => 'control-label col-sm-2']) !!}
+    <div class="col-sm-5">
+        <div class="form-group row">
+            <div class="col-sm-1  tiny-input">
+                {!! Form::number('late_fee_whole', 0, ['class' => 'form-control', 'min' => 0]) !!}
+            </div>
+            <div class="col-sm-1  tiny-input">
+                 {!! Form::number('late_fee_cents', 0, ['class' => 'form-control', 'min' => 0, 'max' => 99]) !!}
+            </div>
+            <label for="late_fee_whole" class="control-label col-sm-1 currency-delimiter"><span class="pull-left">$</span></label>
+        </div>
+    </div>
+
+    {!! Form::label('points', 'Points', ['class' => 'control-label col-sm-2']) !!}
+    <div class="col-sm-3">
+        <div class="small-input">
+            {!! Form::number('points', 0, ['class' => 'form-control', 'min' => 0]) !!} 
+        </div>    
+    </div>
+  </div>
+
+  <div class="row">
+    {!! Form::label('stock', 'Stock', ['class' => 'control-label col-sm-2']) !!}
+    <div class="col-sm-3">
+        <div class="small-input">
+            {!! Form::number('stock', 1, ['class' => 'form-control', 'min' => 0]) !!}    
+        </div>
+    </div>
+  </div>
+
 {!! Form::close() !!}

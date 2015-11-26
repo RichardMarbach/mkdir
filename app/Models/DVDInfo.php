@@ -132,4 +132,13 @@ class DVDInfo extends Model
     {
         return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->discount;
     }
+
+    /**
+     * Get points
+     * @return int
+     */
+    public function getPoints()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->price->points;
+    }
 }

@@ -6,7 +6,9 @@
         <h4 class="modal-title" id="dvd-edit-label">Edit dvd</h4>
       </div>
       <div class="modal-body">
-        @include('DVD.edit-dvd-form')
+        <div class="container-fluid">
+          @include('DVD.edit-dvd-form')  
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
