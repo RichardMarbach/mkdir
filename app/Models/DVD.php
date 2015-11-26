@@ -39,14 +39,25 @@ class DVD extends Model
      * @return mixed
      */
     public function stock() {
-        return $this->leftJoin('rentals', 'dvds.id', '=', 'rentals.dvd_id')
-            ->where('dvd_info_id', $this->dvd_info_id)
-            ->where(function($query) {
-                $query->where('start_date', '<', Carbon::now())
-                    ->where('return_date', '<=', Carbon::now())
-                    ->orWhereNull('start_date')
-                    ->whereNull('return_date');
-            })->count();  
+        return $this->getUnrented()->count();  
+    }
+
+    /**
+     * Get unrented dvds
+     * @return array
+     */
+    public function getUnrented()
+    {
+        return $this->whereIn('id', function($query) {
+            $query->select('dvds.id')->from('dvds')
+                ->leftJoin('rentals', 'dvds.id', '=', 'rentals.dvd_id')
+                ->where('dvd_info_id', $this->dvd_info_id)
+                ->where(function($query) {
+                    $query->where('start_date', '>', Carbon::now())
+                        ->orWhereNull('start_date')
+                        ->whereNull('return_date');
+                });
+        })->get();
     }
 
     /**

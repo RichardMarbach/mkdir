@@ -148,4 +148,57 @@ class DVDRepository
         }
     }
 
+    /**
+     * Updates the dvd record in the database
+     * @param  array  $input
+     * @param App\Models\DVDInfo $dvd
+     */
+    public function update(DVDInfo $dvd, array $input)
+    {
+        $dvd->fill($input);
+        $dvd->save();
+
+        if (!$dvd->dvds->isEmpty()) {
+            $price = Price::firstOrCreate([
+                'price_whole'    => $input['price_whole'],
+                'price_cents'    => $input['price_cents'],
+                'late_fee_whole' => $input['late_fee_whole'],
+                'late_fee_cents' => $input['late_fee_cents'],
+                'points'         => $input['points']
+            ]);
+
+            $dvd->dvds()->update([
+                'price_id' => $price->id,
+                'age_restriction' => $input['age_restriction'],
+            ]);
+        }
+
+        $stockChange = $dvd->totalStock() - $input['stock'];
+
+        // Reduce stock
+        if ($stockChange > 0) {
+            $unrented = $dvd->getUnrented();
+            $unrented = $unrented->take($stockChange);
+
+            $ids = array_keys($unrented->getDictionary());
+            DVD::destroy($ids);
+
+        } 
+        //  Increase stock
+        if ($stockChange < 0) {
+            $newDvds = [];
+            while ($stockChange < 0) {
+                array_push($newDvds, new DVD([
+                        'price_id' => $price->id,
+                        'age_restriction' => $input['age_restriction']
+                    ])
+                );
+
+                $stockChange += 1;
+            }
+
+            $dvd->dvds()->saveMany($newDvds);
+        }
+    }
+
 }

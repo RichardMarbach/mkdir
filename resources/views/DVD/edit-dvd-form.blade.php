@@ -74,9 +74,16 @@
 
   <div class="row">
     {!! Form::label('stock', 'Stock', ['class' => 'control-label col-sm-2']) !!}
-    <div class="col-sm-3">
+    <div class="col-sm-5">
         <div class="small-input">
             {!! Form::number('stock', 1, ['class' => 'form-control', 'min' => 0]) !!}    
+        </div>
+    </div>
+    
+    {!! Form::label('age_restriction', 'PG', ['class' => 'control-label col-sm-2']) !!}
+    <div class="col-sm-3">
+        <div class="form-group col-sm-1 tiny-input">
+            {!! Form::number('age_restriction', 0, ['class' => 'form-control', 'min' => 0]) !!}    
         </div>
     </div>
   </div>

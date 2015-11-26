@@ -14,6 +14,7 @@
     <h5>Late fee: <span data-fee-whole="{{ $dvd->feeWhole() }}" data-fee-cents="{{ $dvd->feeCents() }}">{{ $dvd->getLateFee() }}</span> $</h5>
     <h5>Discount: <span data-discount="{{ $dvd->getDiscount() }}">{{ $dvd->getDiscount() }}</span> %</h5>
     <h5>Points: <span data-points="{{ $dvd->getPoints() }}">{{ $dvd->getPoints() }} </span></h5>
+    <h5>PG: <span data-age-restriction="{{ $dvd->getAgeRestriction() }}">{{ $dvd->getAgeRestriction() }}</span></h5>
 
     <button class="btn btn-default" data-toggle="modal" data-target="#dvd-edit-modal">Edit</button>
     <button id="confirm-delete" class="btn btn-default" 

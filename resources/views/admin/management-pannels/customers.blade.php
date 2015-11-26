@@ -6,7 +6,6 @@
 
 @section('management-pannel')
   @include('common.success')
-  @include('common.errors')
   
   <div class="col-sm-10 small-top-buffer">
     @each('admin.partials.customer-item', $customers, 'customer')

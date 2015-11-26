@@ -28,7 +28,6 @@ class HandleDvdRequest extends Request
             'title' => 'required|string|max:255',
             'length' => 'required|integer|max:255',
             'description' => 'string',
-            'genre' => 'required',
             'price_whole' => 'required|integer|min:0',
             'price_cents' => 'required|integer|min:0|max:99',
             'late_fee_whole' => 'required|integer|min:0',

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Models\DVD;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +18,7 @@ class DVDController extends Controller
 
     private $dvds;
 
-    public function __construct(DVDInfo $dvds)
+    public function __construct(DVDRepository $dvds)
     {
         $this->dvds = $dvds;
         $this->middleware('auth', ['except' => ['index', 'show']]);
@@ -39,13 +41,13 @@ class DVDController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HandleDvdRequest $request, DVDRepository $dvds, ImageStorage $storage)
+    public function store(HandleDvdRequest $request, ImageStorage $storage)
     {
         $input = $request->all();
         
         $input['cover_image'] = $request->cover_image ? $storage->store($request->cover_image) : '';
 
-        $dvds->create($input);
+        $this->dvds->create($input);
 
         Session::flash('success', 'Added dvd');
 
@@ -71,10 +73,10 @@ class DVDController extends Controller
      * @param App\Repositories\DVDRepository $dvds
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request, DVDRepository $dvds)
+    public function search(Request $request)
     {
         $title = $request->input('title');
-        return view('DVD.listing')->with('dvds', $dvds->retrieveDvds($title));
+        return view('DVD.listing')->with('dvds', $this->dvds->retrieveDvds($title));
     }
 
     /**
@@ -86,7 +88,17 @@ class DVDController extends Controller
      */
     public function update(HandleDvdRequest $request, ImageStorage $storage, $id)
     {
-        return $id;
+        $dvd = DVDInfo::findOrFail($id);
+
+        $input = $request->all();
+
+        $input['cover_image'] = $request->cover_image ? $storage->store($request->cover_image) : '';
+
+        $this->dvds->update($dvd, $input);
+
+        Session::flash('success', 'Updated ' . $request->title);
+
+        return redirect()->back();
     }
 
     /**
@@ -97,7 +109,7 @@ class DVDController extends Controller
      */
     public function destroy(ImageStorage $storage, $id)
     {
-        $dvd = $this->dvds->findOrFail($id);
+        $dvd = DVDInfo::findOrFail($id);
 
         $storage->delete($dvd->cover_image);
 

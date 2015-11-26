@@ -136,6 +136,7 @@
       discount: dvdBox.find('[data-discount]').data('discount'),
       points: dvdBox.find('[data-points]').data('points'),
       stock: dvdBox.find('[data-stock]').data('stock'),
+      age_restriction:  dvdBox.find('[data-age-restriction]').data('age-restriction'),
     };
 
     // Fix the form url

@@ -63,6 +63,15 @@ class DVDInfo extends Model
     }
 
     /**
+     * Get unrented dvds
+     * @return array
+     */
+    public function getUnrented()
+    {
+        return $this->dvds()->first() ? $this->dvds()->first()->getUnrented() : null;
+    }
+
+    /**
      * Retrieve the cover images url path
      * @return string 
      */
@@ -140,5 +149,14 @@ class DVDInfo extends Model
     public function getPoints()
     {
         return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->price->points;
+    }
+
+    /**
+     * Get age restriction for dvd
+     * @return int
+     */
+    public function getAgeRestriction()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->age_restriction;
     }
 }
