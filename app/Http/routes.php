@@ -43,9 +43,17 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 Route::get('/create', 'Admin\DVDController@create');
 Route::post('/create', 'Admin\DVDController@store');
 
-// // DVD creation routes
-Route::get('/dvds', 'Admin\DVDController@index');
-Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => 'DVDController@show']);
+// DVD creation routes
+Route::get('/createDVD', 'Admin\DVDController@createDVD');
+
+// DVD listing route
+Route::get('/dvds', 'DVDController@index');
+
+// DVD showing route(only 1 dvd)
+Route::get('/dvds/{id}', ['as' => 'dvds.show', 'uses' => 'DVDController@show']);
+
+// DVD search route
+Route::post('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@search']);
 
 // api
 Route::group(['prefix' => 'api'], function() {

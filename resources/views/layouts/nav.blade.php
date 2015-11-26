@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
         data-target="#main-nav-collapse" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="main-nav-collapse">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre 
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre
             <span class="caret"></span>
           </a>
 
@@ -28,10 +28,12 @@
         </li>
       </ul>
 
-      <form class="navbar-form navbar-left" role="search">
+      <form method="post" action="{{ route('dvds.search') }}" enctype="multipart/form-data" class="navbar-form navbar-left" role="search">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name="title" class="form-control" placeholder="Search">
         </div>
+
         <button type="submit" class="btn btn-default">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
@@ -58,7 +60,7 @@
               @endif
               <li><a href="{{ url('/logout')}}">Logout</a></li>
             @else
-              <li><a href="{{ url('/login') }}">Sign in</a></li>
+              <li><a data-target="#loginModal" data-toggle="modal">Sign in</a></li>
               <li><a href="{{ url('/register') }}">Join us</a></li>
             @endif
           </ul>
@@ -67,3 +69,5 @@
     </div>
   </div>
 </nav>
+
+@include ('auth.login-modal')
