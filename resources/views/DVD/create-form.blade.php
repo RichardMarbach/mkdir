@@ -1,7 +1,6 @@
 <div class="container-fluid">
     {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true, 'id' => 'create-dvd-form']) !!}
         @include('common.errors')
-        @include('common.success')
 
         <div class="form-group row">
             {!! Form::label('title', 'Title', ['class' => 'control-label col-sm-2']) !!}
