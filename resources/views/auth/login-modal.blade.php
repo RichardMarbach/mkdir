@@ -32,9 +32,12 @@
         <span class="glyphicon glyphicon-remove"></span> Cancel
       </button>
       <p>Not a member? <a href="{{ url('register') }}">Sign Up</a></p>
+
     </div>
+
   </div>
 
+  </div>
   </div>
 
   <div>
