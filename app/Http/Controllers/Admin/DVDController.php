@@ -19,6 +19,8 @@ class DVDController extends Controller
     public function __construct(DVDInfo $dvds)
     {
         $this->dvds = $dvds;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('role:admin', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -29,16 +31,6 @@ class DVDController extends Controller
     public function index(DVDRepository $dvds)
     {
         return view('DVD.listing')->with('dvds', $dvds->paginateDvds());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('DVD/create');
     }
 
     /**
@@ -68,18 +60,7 @@ class DVDController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->dvds->findOrFail($id);
     }
 
     /**
