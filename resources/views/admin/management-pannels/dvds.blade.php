@@ -16,6 +16,7 @@
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#create-dvd-modal">Add new dvd</button>
   </div>
 
+  @include('admin.partials.create-dvd-modal')
   @include('admin.partials.confirmation-modal')
   @include('admin.partials.edit-dvd-modal')
 @endsection

@@ -104,4 +104,15 @@
       copy.insertAfter(group);
     }
   };
+
+  // Admin dvd buttons
+  $('#create-dvd-modal').on('show.bs.modal', function(event) {
+    var modal = $(this);
+    var form = modal.find('#create-dvd-form');
+
+    $('#create-dvd-submit').on('click', function(event) {
+      form.submit();
+      modal.hide();
+    });
+  });
 })()
