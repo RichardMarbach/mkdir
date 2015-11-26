@@ -67,4 +67,66 @@ class DVDInfo extends Model
     {
         return !empty($this->cover_image) ? '/images/' . $this->cover_image : 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97300&w=150&h=200';
     }
+
+    /**
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->dvds->isEmpty() ? '0,-' : $this->dvds()->first()->price->format();
+    }
+
+    /**
+     * Get late
+     * @return string
+     */
+    public function getLateFee()
+    {
+        return $this->dvds->isEmpty() ? '0,-' : $this->dvds()->first()->price->formatLate();   
+    }
+
+    /**
+     * whole price of dvd
+     * @return int
+     */
+    public function wholePrice()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->price->price_whole;
+    }
+
+    /**
+     * Cent price of dvd
+     * @return int
+     */
+    public function centPrice()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->price->price_cents;
+    }
+
+    /**
+     * whole price of dvd
+     * @return int
+     */
+    public function feeWhole()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->price->late_fee_whole;
+    }
+
+    /**
+     * Cent price of dvd
+     * @return int
+     */
+    public function feeCents()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->price->late_fee_cents;
+    }
+
+    /**
+     * Get discount of dvd
+     * @return int
+     */
+    public function getDiscount()
+    {
+        return $this->dvds->isEmpty() ? 0 : $this->dvds()->first()->discount;
+    }
 }

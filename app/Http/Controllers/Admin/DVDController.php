@@ -10,9 +10,17 @@ use Session;
 use App\Repositories\DVDRepository;
 use App\Services\Contracts\ImageStorageContract as ImageStorage;
 use App\Http\Requests\HandleDvdRequest;
+use App\Models\DVDInfo;
 
 class DVDController extends Controller
 {
+    private $dvds;
+
+    public function __construct(DVDInfo $dvds)
+    {
+        $this->dvds = $dvds;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -92,8 +100,16 @@ class DVDController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, ImageStorage $storage)
     {
-        //
+        $dvd = $this->dvds->findOrFail($id);
+
+        $storage->delete($dvd->cover_image);
+
+        $dvd->delete();
+
+        Session::flash('success', 'Dvd deleted');
+
+        return redirect()->back();
     }
 }

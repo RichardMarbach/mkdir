@@ -43,9 +43,9 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 Route::get('/create', 'Admin\DVDController@create');
 Route::post('/create', 'Admin\DVDController@store');
 
-// DVD creation routes
-Route::get('/dvds', 'DVDController@index');
-Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => 'DVDController@show']);
+// // DVD creation routes
+Route::get('/dvds', 'Admin\DVDController@index');
+// Route::get('/dvds/{id}', ['as' => 'dvds.show','uses' => 'DVDController@show']);
 
 // api
 Route::group(['prefix' => 'api'], function() {
@@ -59,7 +59,9 @@ Route::group(['prefix' => 'api'], function() {
     });
 
     // dvds
-    Route::group(['prefix' => 'dvd'], function() {
+    Route::group(['prefix' => 'dvds'], function() {
         Route::post('/', ['as' => 'dvd.store', 'uses' => 'Admin\DVDController@store']);
+        Route::delete('{id}', function() {return 'deleted';});
+        // Route::delete('{$id}', ['as' => 'dvd.destroy', 'uses' => 'Admin\DVDController@destroy']);
     });
 });
