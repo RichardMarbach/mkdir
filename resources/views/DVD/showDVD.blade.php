@@ -10,7 +10,7 @@
 
 	<div>
     	<img
-        src="{{ $dvd->cover_image or 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97200&w=150&h=200' }}" 
+        src="{{ $dvd->dvd_info->cover_image or 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97200&w=150&h=200' }}" 
         alt="{{ $dvd->dvd_info->title }}" />
     </div>
     <div>
