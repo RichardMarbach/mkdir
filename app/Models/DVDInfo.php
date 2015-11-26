@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DVDInfo extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'dvd_info';
 
     protected $fillable = ['title', 'description', 'length', 'cover_image'];
