@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    {!! Form::open(['url' => '/create', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true, 'id' => 'create-dvd-form']) !!}
+    {!! Form::open(['route' => 'dvd.store', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true, 'id' => 'create-dvd-form']) !!}
         @include('common.errors')
 
         <div class="form-group row">
