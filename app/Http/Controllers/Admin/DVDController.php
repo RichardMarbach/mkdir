@@ -100,7 +100,7 @@ class DVDController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, ImageStorage $storage)
+    public function destroy(ImageStorage $storage, $id)
     {
         $dvd = $this->dvds->findOrFail($id);
 
