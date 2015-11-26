@@ -38,7 +38,6 @@ Route::get('/logout', 'Auth\AuthController@getLogout');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
-
 Route::get('/dvds', 'DVDController@index');
 
 // DVD showing route(only 1 dvd)
