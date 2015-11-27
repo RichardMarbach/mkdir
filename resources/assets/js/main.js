@@ -104,4 +104,54 @@
       copy.insertAfter(group);
     }
   };
+
+  // Admin dvd buttons
+  $('#create-dvd-modal').on('show.bs.modal', function(event) {
+    var modal = $(this);
+    var form = modal.find('#create-dvd-form');
+
+    $('#create-dvd-submit').on('click', function(event) {
+      form.submit();
+      modal.hide();
+    });
+  });
+
+  // Update dvd info
+  $('#dvd-edit-modal').on('show.bs.modal', function(event) {
+    var modal = $(this);
+    var form = modal.find('#dvd-edit-form');
+    var submit = modal.find('#edit-dvd-modal-submit');
+
+    var dvdBox = $(event.relatedTarget).parent();
+    
+    var details = {
+      id: dvdBox.data('id'),
+      title: dvdBox.find('[data-title]').data('title'),
+      length: dvdBox.find('[data-length]').data('length'),
+      description: dvdBox.find('[data-description]').data('description'),
+      price_whole: dvdBox.find('[data-price-whole]').data('price-whole'),
+      price_cents: dvdBox.find('[data-price-cents]').data('price-cents'),
+      fee_whole: dvdBox.find('[data-fee-whole]').data('fee-whole'),
+      fee_cents: dvdBox.find('[data-fee-cents]').data('fee-cents'),
+      discount: dvdBox.find('[data-discount]').data('discount'),
+      points: dvdBox.find('[data-points]').data('points'),
+      stock: dvdBox.find('[data-stock]').data('stock'),
+      age_restriction:  dvdBox.find('[data-age-restriction]').data('age-restriction'),
+    };
+
+    // Fix the form url
+    var idPath = form.attr('action').replace(/[^\/]+$/, details.id);
+    form.attr('action', idPath);
+
+    for (var detail in details) {
+      if (detail === 'id') continue;
+
+      modal.find('#' + detail).val(details[detail]);
+    }
+
+    submit.on('click', function() {
+      form.submit();
+      modal.hide();
+    });
+  });
 })()
