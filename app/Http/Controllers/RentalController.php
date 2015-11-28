@@ -100,7 +100,7 @@ class RentalController extends Controller
         Session::flash('success', 'Rental dates updated');
 
         if ($request->returned) {
-            $request->return_date = \Carbon\Carbon::now();
+            $rental->return_date = \Carbon\Carbon::now();
             Session::flash('success', 'Dvd returned');
         }
         
