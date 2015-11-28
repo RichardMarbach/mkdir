@@ -6,6 +6,9 @@
 
     <h5 data-start="{{ $rental->start_date }}">Rented on: {{ Helper::prettifyDate($rental->start_date) }}</h5>
     <h5 data-due="{{ $rental->due_date }}">Due: {{ Helper::prettifyDate($rental->due_date) }}</h5>
+    @if ($rental->isLate())
+      <h5 class="alert-late">This dvd is late</h5>
+    @endif
 
     <div class="clearfix"></div>
   
