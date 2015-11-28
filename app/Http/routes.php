@@ -67,6 +67,7 @@ Route::group(['prefix' => 'api'], function() {
     // Rentals
     Route::group(['prefix' => 'rentals'], function() {
         Route::post('/', ['as' => 'rentals.store', 'uses' => 'RentalController@store']);
+        Route::put('{id}', ['as' => 'rentals.update', 'uses' => 'RentalController@update']);
         Route::delete('{id}', ['as' => 'rentals.destroy', 'uses' => 'RentalController@destroy']);
     });
 });
