@@ -36,7 +36,7 @@ class DVDRepository
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function eagerLoadAll($id) {
-      return $this->eagerLoadDvd()->find($id);
+      return $this->eagerLoadDvdInfo()->find($id);
     }
 
     /**
