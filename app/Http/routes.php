@@ -40,11 +40,12 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 
 Route::get('/dvds', 'DVDController@index');
 
+// DVD search route
+Route::get('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@search']);
+
 // DVD showing route(only 1 dvd)
 Route::get('/dvds/{id}', ['as' => 'dvds.show', 'uses' => 'DVDController@show']);
 
-// DVD search route
-Route::post('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@search']);
 
 // api
 Route::group(['prefix' => 'api'], function() {
