@@ -78,6 +78,7 @@ class DVDController extends Controller
     public function search(Request $request)
     {
         $title = $request->input('title');
+        
         return view('DVD.listing')->with('dvds', $this->dvds->retrieveDvds($title));
     }
 

@@ -154,4 +154,45 @@
       modal.hide();
     });
   });
+
+  // Rental buttons
+  $("#create-rental-modal").on('show.bs.modal', function() {
+    var modal = $(this);
+    var form = modal.find('#create-rental-form');
+    var submitBtn = modal.find('#create-rental-modal-submit');
+
+    submitBtn.on('click', function() {
+      form.submit();
+      modal.close();
+    });
+  });
+
+  $('#rental-edit-modal').on('show.bs.modal', function(event) {
+    var modal = $(this);
+    var form = modal.find('#rental-edit-form');
+    var submitBtn = modal.find('#edit-rental-modal-submit');
+
+    var rentalBox = $(event.relatedTarget).parent();
+
+    var details = {
+      id: rentalBox.data('id'),
+      start_date: rentalBox.find('[data-start]').data('start').split(" ")[0],
+      due_date: rentalBox.find('[data-due]').data('due').split(" ")[0],
+    }
+
+    // Fix the form url
+    var idPath = form.attr('action').replace(/[^\/]+$/, details.id);
+    form.attr('action', idPath);
+
+    for (var detail in details) {
+      if (detail === 'id') continue;
+
+      modal.find('#' + detail).val(details[detail]);
+    }
+
+    submitBtn.on('click', function() {
+      form.submit();
+      modal.hide();
+    });
+  });
 })()

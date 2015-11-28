@@ -46,11 +46,12 @@ Route::get('/createDVD', 'Admin\DVDController@createDVD');
 // DVD listing route
 Route::get('/dvds', 'DVDController@index');
 
+// DVD search route
+Route::get('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@search']);
+
 // DVD showing route(only 1 dvd)
 Route::get('/dvds/{id}', ['as' => 'dvds.show', 'uses' => 'DVDController@show']);
 
-// DVD search route
-Route::post('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@search']);
 
 // api
 Route::group(['prefix' => 'api'], function() {
@@ -68,5 +69,12 @@ Route::group(['prefix' => 'api'], function() {
         Route::post('/', ['as' => 'dvd.store', 'uses' => 'DVDController@store']);
         Route::put('{id}', ['as' => 'dvds.update', 'uses' => 'DVDController@update']);
         Route::delete('{id}', ['as' => 'dvds.destroy', 'uses' => 'DVDController@destroy']);
+    });
+
+    // Rentals
+    Route::group(['prefix' => 'rentals'], function() {
+        Route::post('/', ['as' => 'rentals.store', 'uses' => 'RentalController@store']);
+        Route::put('{id}', ['as' => 'rentals.update', 'uses' => 'RentalController@update']);
+        Route::delete('{id}', ['as' => 'rentals.destroy', 'uses' => 'RentalController@destroy']);
     });
 });
