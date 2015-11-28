@@ -16,4 +16,5 @@
   </div>
 
   @include('admin.partials.create-rental-modal')
+  @include('admin.partials.confirmation-modal')
 @endsection

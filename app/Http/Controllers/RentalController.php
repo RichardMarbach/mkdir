@@ -77,17 +77,6 @@ class RentalController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -107,6 +96,10 @@ class RentalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rental = Rental::findOrFail($id);
+        $rental->delete();
+
+        Session::flash('success', 'Rental deleted');
+        return redirect()->back();
     }
 }

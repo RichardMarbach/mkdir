@@ -45,22 +45,20 @@ class Rental extends Model
      * @return Collection
      */
     public function getRented() {
-        return $this->whereNotNull('start_date')
-            ->whereNull('return_date')
-            ->with('dvds.dvd_info')->get();
+        return $this->with('dvd.dvd_info')->whereNull('return_date')->get();
     }
 
     /**
      * @return mixed
      */
-    public function customers() {
+    public function customer() {
       return $this->belongsTo('App\Models\Customer');
     }
 
     /**
      * @return mixed
      */
-    public function dvds() {
+    public function dvd() {
       return $this->belongsTo('App\Models\DVD');
     }
 }

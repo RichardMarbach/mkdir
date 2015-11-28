@@ -69,7 +69,7 @@ class DVDRepository
     /** Eagerly load all the related dvd fields */
     private function eagerLoadDvd() {
         return $this->dvd->with(
-            'price', 'rentals.customers.users', 
+            'price', 'rentals.customer.user', 
             'dvd_info.producers', 'dvd_info.actors', 'dvd_info.genres',
             'languages', 'subtitles'
         );
@@ -80,7 +80,7 @@ class DVDRepository
         return $this->dvdInfo->with(
         'producers', 'genres', 'actors', 
         'dvds.price', 'dvds.languages', 'dvds.subtitles',
-        'dvds.rentals.customers.users'
+        'dvds.rentals.customer.user'
       );
     }
 
