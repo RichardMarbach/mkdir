@@ -6,8 +6,6 @@
 
 @section('content')
   <div class="container">
-    <h1>{{}}</h1>
-
 	<div>
     	<img
         src="{{ $dvd->dvd_info->cover_image or 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97200&w=150&h=200' }}" 

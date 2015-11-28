@@ -7,7 +7,9 @@
     </div>
     <div class="col-md-4">
       <img class="img-responsive"
-        src="{{ $dvd->cover_image or 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97200&w=150&h=200' }}" 
+        src="{{ empty($dvd->cover_image) 
+          ? 'https://placeholdit.imgix.net/~text?txtsize=14&txt=150%C3%97200&w=150&h=200'
+          : '/images/' . $dvd->cover_image }}"
         alt="{{ $dvd->title }}">
     </div>
   </div>
