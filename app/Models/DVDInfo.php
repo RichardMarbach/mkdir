@@ -68,7 +68,7 @@ class DVDInfo extends Model
      */
     public function getUnrented()
     {
-        return $this->dvds()->first() ? $this->dvds()->first()->getUnrented() : null;
+        return $this->dvds->first() ? $this->dvds()->first()->getUnrented() :  new \Illuminate\Database\Eloquent\Collection;
     }
 
     /**

@@ -41,6 +41,16 @@ class Rental extends Model
     }
 
     /**
+     * Get all rented dvds
+     * @return Collection
+     */
+    public function getRented() {
+        return $this->whereNotNull('start_date')
+            ->whereNull('return_date')
+            ->with('dvds.dvd_info')->get();
+    }
+
+    /**
      * @return mixed
      */
     public function customers() {

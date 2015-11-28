@@ -154,4 +154,16 @@
       modal.hide();
     });
   });
+
+  // Rental buttons
+  $("#create-rental-modal").on('show.bs.modal', function() {
+    var modal = $(this);
+    var form = modal.find('#create-rental-form');
+    var submitBtn = modal.find('#create-rental-modal-submit');
+
+    submitBtn.on('click', function() {
+      form.submit();
+      modal.close();
+    });
+  });
 })()

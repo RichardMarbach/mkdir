@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Repositories\UserRepository;
 use App\Repositories\DVDRepository;
+use App\Models\Rental;
 
 class DashboardController extends Controller
 {
@@ -42,9 +43,11 @@ class DashboardController extends Controller
         return view('admin.management-pannels.dvds')->with('dvds', $this->dvds->retrieveAllDvds());
     }
 
-    public function getAdminRentals()
+    public function getAdminRentals(Rental $rentals)
     {
-        return view('admin.management-pannels.rentals');
+        return view('admin.management-pannels.rentals')
+            ->with('rentals', $rentals->getRented())
+            ->with('dvds', $this->dvds->retrieveAllDvds());
     }
 
 }
