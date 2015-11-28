@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\DVDInfo;
 use Session;
 use App\Models\Rental;
+use Validator;
 
 class RentalController extends Controller
 {
@@ -27,6 +28,14 @@ class RentalController extends Controller
      */
     public function store(Request $request, DVDInfo $dvds)
     {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+
         $customer = Customer::firstOrCreate([
             'name' => $request->name,
             'address' => $request->address,
@@ -36,7 +45,7 @@ class RentalController extends Controller
         $dvd = $dvds->find($request->dvd_id)->getUnrented()->first();
 
         if (!$dvd) {
-            return redirect()->back()->withErrors(['stock' => 'The dvd seems to be out of stock']);
+            return redirect()->back()->withInput()->withErrors(['stock' => 'The dvd seems to be out of stock']);
         }
 
         $input = $request->all();
@@ -48,6 +57,23 @@ class RentalController extends Controller
         Session::flash('success', $dvd->dvd_info->title . ' rented');
 
         return redirect()->back();
+    }
+
+    protected function validator(array $data)
+    {
+        $messages = [
+            'dvd_id.required' => 'Please choose a real dvd',
+            'due_date.after' => 'The dvd should be due after the rental period starts'
+        ];
+
+        return Validator::make($data, [
+            'name' => 'required|min:2',
+            'address' => 'required|min:2',
+            'phone_number' => 'required',
+            'dvd_id' => 'required',
+            'start_date' =>  'required|date',
+            'due_date' =>  'required|date|after:' . $data['start_date']
+        ], $messages);
     }
 
     /**
