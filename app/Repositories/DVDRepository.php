@@ -58,6 +58,23 @@ class DVDRepository
     }
 
     /**
+     * Retrieves dvd collection by genre
+     * @param  string $genre
+     * @return Collection
+     */
+    public function retrieveByGenre($genre, $pageCount = 20)
+    {
+        return $this->dvdInfo->whereHas('genres', function($query) use ($genre){
+            $query->where('genre', 'like', "%$genre%");
+          })
+          ->with(
+            'producers', 'genres', 'actors', 
+            'dvds.price', 'dvds.languages', 'dvds.subtitles',
+            'dvds.rentals.customer.user'
+          )->paginate($pageCount);
+    }
+
+    /**
      * Retrieves all dvds in pages
      * @param  integer $pageCount
      * @return mixed             
