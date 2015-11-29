@@ -40,30 +40,15 @@
 
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
-          <li>
-            <a href="#">
-              <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-            </a>
-          </li>
+          <li><a href="{{ route('user.dashboard') }}">My Dashboard</a></li>
+          @if (Auth::user()->isAdmin())
+            <li><a href="{{ route('admin.dashboard') }}">Admin pannel</a></li>
+          @endif
+          <li><a href="{{ url('/logout')}}">Logout</a></li>
+        @else
+          <li><a data-target="#loginModal" data-toggle="modal">Sign in</a></li>
+          <li><a href="{{ url('/register') }}">Join us</a></li>
         @endif
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            @if (Auth::check())
-              <li><a href="{{ route('user.dashboard') }}">My Dashboard</a></li>
-              @if (Auth::user()->isAdmin())
-                <li><a href="{{ route('admin.dashboard') }}">Admin pannel</a></li>
-              @endif
-              <li><a href="{{ url('/logout')}}">Logout</a></li>
-            @else
-              <li><a data-target="#loginModal" data-toggle="modal">Sign in</a></li>
-              <li><a href="{{ url('/register') }}">Join us</a></li>
-            @endif
-          </ul>
-        </li>
       </ul>
     </div>
   </div>
