@@ -81,6 +81,16 @@ class DVDController extends Controller
     }
 
     /**
+     * Retrieve dvds by genre
+     * @param  string $genre
+     * @return \Illuminate\Http\Response
+     */
+    public function genre($genre)
+    {
+        return view('DVD.listing')->with('dvds', $this->dvds->retrieveByGenre($genre));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -41,6 +41,7 @@ Route::post('/register', 'Auth\AuthController@postRegister');
 Route::get('/dvds', 'DVDController@index');
 
 // DVD search route
+Route::get('/dvds/search/genre/{genre}', ['as' => 'dvds.genre', 'uses' => 'DVDController@genre']);
 Route::get('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@search']);
 
 // DVD showing route(only 1 dvd)

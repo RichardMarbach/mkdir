@@ -22,7 +22,7 @@
 
           <ul class="dropdown-menu">
             @foreach ($genres as $genre)
-              <li><a href="#">{{ $genre->genre }}</a></li>
+              <li><a href="{{ route('dvds.genre', ['genre' => $genre->genre]) }}">{{ $genre->genre }}</a></li>
             @endforeach
           </ul>
         </li>
