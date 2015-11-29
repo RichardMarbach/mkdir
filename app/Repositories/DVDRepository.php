@@ -62,7 +62,7 @@ class DVDRepository
      * @param  string $genre
      * @return Collection
      */
-    public function retrieveByGenre($genre)
+    public function retrieveByGenre($genre, $pageCount = 20)
     {
         return $this->dvdInfo->whereHas('genres', function($query) use ($genre){
             $query->where('genre', 'like', "%$genre%");
@@ -71,7 +71,7 @@ class DVDRepository
             'producers', 'genres', 'actors', 
             'dvds.price', 'dvds.languages', 'dvds.subtitles',
             'dvds.rentals.customer.user'
-          )->get();
+          )->paginate($pageCount);
     }
 
     /**
