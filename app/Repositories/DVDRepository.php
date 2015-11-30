@@ -97,7 +97,7 @@ class DVDRepository
         return $this->dvdInfo->with(
         'producers', 'genres', 'actors', 
         'dvds.price', 'dvds.languages', 'dvds.subtitles',
-        'dvds.rentals.customer.user'
+        'dvds.rentals.customer', 'dvds.rentals.customer.user'
       );
     }
 

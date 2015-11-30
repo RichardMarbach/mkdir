@@ -6,10 +6,18 @@
 
 @section('content')
 <div class="container">
+    {!! Form::open(['route' => 'rentals.store', 'method' => 'post']) !!}
+      {!! Form::hidden('name', dvd->dvds->rentals->customer->name) !!}
+      {!! Form::hidden('address', dvd->dvds->rentals->customer->address) !!}
+      {!! Form::hidden('phone_number', dvd->dvds->rentals->customer->phone_number) !!}
+      {!! Form::hidden('dvd_id', dvd->dvds->id) !!}
+      {!! Form::hidden('start_date', \Carbon\Carbon::now()) !!}
+      {!! Form::hidden('due_date', \Carbon\Carbon::now()->addDays(7)) !!}
+
       <div class="row">
           <div class="col-lg-12">
-              <h1 class="page-header">DVD TITLE here
-                  <small>alternative title</small>
+              <h1 class="page-header">{{ $dvd->title }}
+                  <small>{{ $dvd->getPrice() }} euros</small>
               </h1>
           </div>
       </div>
@@ -60,7 +68,7 @@
                   </th>
                   <td>
                     @foreach ($dvd->actors as $actor)
-                        {{ $producer->name }}
+                        {{ $actor->name }}
                     @endforeach
                   </td>
               </tr>
@@ -87,5 +95,9 @@
 
       <hr>
 
+      <div>
+        {!! Form::submit('Rent') !!}
+      </div>
+    {!! Form::close()!!}
 </body>
 @endsection
