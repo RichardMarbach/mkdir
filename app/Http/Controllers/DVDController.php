@@ -8,6 +8,8 @@ use App\Models\DVD;
 use App\Http\Controllers\Controller;
 
 use Session;
+use Auth;
+use App\Models\Rental;
 use App\Repositories\DVDRepository;
 use App\Services\Contracts\ImageStorageContract as ImageStorage;
 use App\Http\Requests\HandleDvdRequest;
@@ -17,10 +19,12 @@ class DVDController extends Controller
 {
 
     private $dvds;
+    private $dvd;
 
-    public function __construct(DVDRepository $dvds)
+    public function __construct(DVDRepository $dvds, DVDInfo $dvd)
     {
         $this->dvds = $dvds;
+        $this->dvd = $dvd;
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('role:admin', ['except' => ['index', 'show']]);
     }
@@ -90,6 +94,41 @@ class DVDController extends Controller
     public function genre($genre)
     {
         return view('DVD.listing')->with('dvds', $this->dvds->retrieveByGenre($genre));
+    }
+
+    /**
+     * Rent a dvd id
+     * @param  integer $id
+     * @return Illuminate\Http\Response
+     */
+    public function rent(Request $request, $id)
+    {
+        $this->validate($request, [
+            'start_date' => 'required|date|after:' . \Carbon\Carbon::now()->subDay(1),
+            'due_date' => 'required|date|after:' . $request->start_date
+        ]);
+
+        $dvds = $this->dvd->findOrFail($id)->getUnrented();
+
+        if ($dvds->isEmpty()) {
+            return redirect()->back()->withInput()->withErrors(['stock' => "This dvd is out of stock"]);
+        }
+
+        $customer = Auth::user()->customer;
+
+        $dvd = $dvds->first();
+
+        $rental = new Rental([
+            'start_date' => $request->start_date,
+            'due_date' => $request->due_date,
+            'customer_id' => $customer->id
+        ]);
+
+        $dvd->rentals()->save($rental);
+
+        Session::flash('success', "Your dvd has been reserved!");
+
+        return redirect()->back();
     }
 
     /**

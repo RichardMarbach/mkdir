@@ -53,7 +53,6 @@ Route::get('/dvds/search', ['as' => 'dvds.search', 'uses' => 'DVDController@sear
 // DVD showing route(only 1 dvd)
 Route::get('/dvds/{id}', ['as' => 'dvds.show', 'uses' => 'DVDController@show']);
 
-
 // api
 Route::group(['prefix' => 'api'], function() {
     // Customer
@@ -70,6 +69,7 @@ Route::group(['prefix' => 'api'], function() {
         Route::post('/', ['as' => 'dvd.store', 'uses' => 'DVDController@store']);
         Route::put('{id}', ['as' => 'dvds.update', 'uses' => 'DVDController@update']);
         Route::delete('{id}', ['as' => 'dvds.destroy', 'uses' => 'DVDController@destroy']);
+        Route::post('{id}/rental', ['as' => 'dvds.rent', 'uses' => 'DVDController@rent']);
     });
 
     // Rentals

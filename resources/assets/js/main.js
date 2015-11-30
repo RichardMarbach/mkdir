@@ -195,4 +195,14 @@
       modal.hide();
     });
   });
+
+  // DVD rental
+  $('#rent-dvd-modal').on('show.bs.modal', function() {
+    var modal = $(this);
+
+    modal.find('#rent-dvd-submit').on('click', function() {
+      modal.find('#rent-dvd-form').submit();
+      modal.close();
+    });
+  });
 })()
