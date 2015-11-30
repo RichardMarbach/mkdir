@@ -8,7 +8,9 @@
 <div class="container">
   @include('partials.main-banner')
 </div>
+<div class="bg-Joy">
 
+</div>
 <div class="container container-bottom">
   <div class="row">
     <div class="col-md-6">
