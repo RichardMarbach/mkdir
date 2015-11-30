@@ -3,7 +3,7 @@
   <div class="modal-content">
     <div class="modal-header" style="padding:35px 50px;">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <img src="images/img/mkdir_logo.png"
+      <img src="/images/img/mkdir_logo.png"
       style="width:100%;"/>
     </div>
 
