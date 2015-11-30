@@ -2,7 +2,7 @@
   <div class="col-md-5">
     <div class="col-md-8">
       <h3>{{ $dvd->title }}</h3>
-      <h5>Description <span class="pull-right">{{ $dvd->length != '' ? $dvd->length : '90 minutes' }}</span></h5>
+      <h5>Description <span class="pull-right">{{ $dvd->length != '' ? $dvd->length : '0' }} min</span></h5>
       <p>{{ $dvd->description }}</p>
     </div>
     <div class="col-md-4">

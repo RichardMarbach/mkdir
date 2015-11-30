@@ -25,8 +25,8 @@ class DVDController extends Controller
     {
         $this->dvds = $dvds;
         $this->dvd = $dvd;
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('role:admin', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'genre']]);
+        $this->middleware('role:admin', ['except' => ['index', 'show', 'search', 'genre', 'rent']]);
     }
 
     /**
