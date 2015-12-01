@@ -31,6 +31,15 @@ class DVDRepository
     }
 
     /**
+     * Retrieve 4 random dvds from the database
+     * @return COllection
+     */
+    public function random($limit = 4)
+    {
+        return $this->dvdInfo->orderByRaw('RAND()')->limit($limit)->get();
+    }
+
+    /**
      * Return all refenced information for a specific dvd
      * @param  Dvd    $dvd 
      * @return \Illuminate\Database\Eloquent\Collection

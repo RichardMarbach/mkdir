@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Repositories\DVDRepository;
 
 class HomeController extends Controller
 {
-    public function __construct()
+    private $dvds;
+
+    public function __construct(DVDRepository $dvds)
     {
-        
+        $this->dvds = $dvds;
     }
 
     /**
@@ -21,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('index')->with('dvds', $this->dvds);
     }
 }
