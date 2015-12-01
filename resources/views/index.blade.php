@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-md-6">
       <h4 class="category">MKDIR'S <span class="highlighted">CHOICE </span></h4>
-      <div class="row">
+      <div class="row home-row">
         @include('partials.dvd-item')
         @include('partials.dvd-item')
         @include('partials.dvd-item')
@@ -25,7 +25,7 @@
 
     <div class="col-md-6">
       <h4 class="category">MKDIR'S <span class="highlighted">CHOICE </span></h4>
-      <div class="row">
+      <div class="row home-row">
         @include('partials.dvd-item')
         @include('partials.dvd-item')
         @include('partials.dvd-item')
@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-md-6">
       <h4 class="category">MKDIR'S <span class="highlighted">CHOICE </span></h4>
-      <div class="row">
+      <div class="row home-row">
         @include('partials.dvd-item')
         @include('partials.dvd-item')
         @include('partials.dvd-item')
@@ -47,7 +47,7 @@
 
     <div class="col-md-6">
       <h4 class="category">MKDIR'S <span class="highlighted">CHOICE </span></h4>
-      <div class="row">
+      <div class="row home-row">
         @include('partials.dvd-item')
         @include('partials.dvd-item')
         @include('partials.dvd-item')
