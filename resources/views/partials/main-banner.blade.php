@@ -9,38 +9,31 @@
   </ol>
   <!-- wrapper for slides -->
   <div class="carousel-inner" role="lisbox">
-    <div class="item active">
-      <img src="http://wallpaperspal.com/wp-content/uploads/2014-Interstellar-Movie-Poster-Wallpaper.jpg" alt="" />
-      <div class="carousel-caption">
-        <h1>Interstellar</h1>
+    @foreach ($dvds->random(1) as $dvd)
+      <div class="item active">
+        <a href="{{ route('dvds.show', ['id' => $dvd->id]) }}">
+          <img src="{{ empty($dvd->cover_image) 
+              ? 'https://placeholdit.imgix.net/~text?txtsize=24&txt=1920%C3%971080&w=1920&h=1080'
+              : '/images/' . $dvd->cover_image }}" alt="" />
+          <div class="carousel-caption">
+            <h1>{{ $dvd->title}}</h1>
+          </div>
+        </a>
       </div>
-    </div>
-    <div class="item">
-      <img src="http://freshwallpapers.net/download/7794/1920x1080/download/inside-out-2015-movie-poster.jpg" alt="" />
-      <div class="carousel-caption">
-        <h1>Inside Out</h1>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://epicwallpaperhd.com/wp-content/uploads/2014/10/Guardians-Of-The-Galaxy-2014-Movie-Poster-Cover.jpg" alt="" />
-      <div class="carousel-caption">
-        <h1>Guardians of the Galaxy</h1>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://stylishhdwallpapers.com/wp-content/uploads/2014/09/The-Hobbit-The-Battle-of-The-Five-Armies-2014-Movie-hd-wallpaper-4.jpg" alt="" />
-      <div class="carousel-caption">
-        <h1>The Hobbit</h1>
-        <h4>The battle of the five armies</h4>
-      </div>
-    </div>
-    <div class="item">
-      <img src="http://nukethefridge.com/wp-content/uploads/2015/04/Marvel-Ant-Man-2015-Movie-Poster-HD-Wallpaper.jpg" alt="" />
-      <div class="carousel-caption">
-        <h1>Antman</h1>
+    @endforeach
 
+    @foreach ($dvds->random(4) as $dvd)
+      <div class="item">
+        <a href="{{ route('dvds.show', ['id' => $dvd->id]) }}">
+          <img src="{{ empty($dvd->cover_image) 
+              ? 'https://placeholdit.imgix.net/~text?txtsize=24&txt=1920%C3%971080&w=1920&h=1080'
+              : '/images/' . $dvd->cover_image }}" alt="" />
+          <div class="carousel-caption">
+            <h1>{{ $dvd->title}}</h1>
+          </div>
+        </a>
       </div>
-    </div>
+    @endforeach
   </div>
   <!-- controls or next and prev buttons -->
   <a class="left carousel-control" href="#my-slider" role="button" data-slide="prev">
