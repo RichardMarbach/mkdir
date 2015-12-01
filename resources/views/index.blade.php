@@ -5,9 +5,11 @@
 @endsection
 
 @section('content')
+<div class="bg-main">
 <div class="container">
   @include('partials.main-banner')
 </div>
+
 
 <div class="container container-bottom">
   <div class="row">
@@ -54,6 +56,7 @@
     </div>
   </div>
 
+</div>
 </div>
 
 @endsection
