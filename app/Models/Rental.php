@@ -27,7 +27,7 @@ class Rental extends Model
      * @return boolean
      */
     public function isLate() {
-      return !$this->isReturned() && $this->due_date < Carbon::now();
+      return !$this->isReturned() && $this->due_date->getTimestamp() < Carbon::now()->getTimestamp();
     }
 
     /**
